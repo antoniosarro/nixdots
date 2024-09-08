@@ -5,24 +5,39 @@
   };
   programs.waybar = {
     enable = true;
-    settings = [
-      {
-        layer = "top";
-        position = "top";
+    settings = {
+      mainBar = {
+        layer = config.var.theme.waybar.position;
+        position = config.var.theme.waybar.position;
         spacing = 0;
-        "margin-top" = 4;
-        "margin-left" = 8;
-        "margin-right" = 8;
-        "margin-bottom" = 4;
-        height = 36;
-        modules-left = ["custom/logo"];
-        modules-center = ["clock"];
+
+        "margin-top" =
+          if
+            config.var.theme.waybar.float
+            && config.var.theme.waybar.position == "top"
+          then config.var.theme.gaps-out
+          else 0;
+        "margin-left" =
+          if config.var.theme.waybar.float
+          then config.var.theme.gaps-out
+          else 0;
+        "margin-right" =
+          if config.var.theme.waybar.float
+          then config.var.theme.gaps-out
+          else 0;
+
+        height = 44;
+
+        modules-left = ["custom/logo" "hyprland/window"];
+        modules-center = ["hyprland/workspaces"];
         modules-right = [
           "tray"
           "backlight"
           "pulseaudio"
+          "custom/caffeine"
           "custom/night-shift"
           "battery"
+          "clock"
         ];
 
         "custom/logo" = {
@@ -30,62 +45,12 @@
           tooltip = false;
           on-click = "appmenu";
         };
-        clock = {
-          "tooltip-format" = "<tt>{calendar}</tt>";
-          "format-alt" = "  {:%a, %d %b %Y}";
-          format = "󰥔  {:%I:%M %p}";
+
+        "hyprland/window" = {
+          "format" = "{title:30}";
+          "max-length" = 30;
+          "separate-outputs" = true;
         };
-        tray = {spacing = 16;};
-        backlight = {
-          device = "intel_backlight";
-          format = "{icon}";
-          "format-icons" = [" " " " "" "" "" "" "" "" ""];
-        };
-        pulseaudio = {
-          format = "{icon}";
-          "format-bluetooth" = "󰂰";
-          nospacing = 1;
-          "tooltip-format" = "Volume : {volume}%";
-          "format-muted" = "󰝟";
-          "format-icons" = {
-            "headphone" = "";
-            "default" = ["󰖀" "󰕾" ""];
-          };
-          "on-click" = "sound-toggle";
-          "scroll-step" = 1;
-        };
-        "custom/night-shift" = {
-          format = "{}";
-          max-length = 5;
-          interval = 10;
-          exec = "night-shift-status-icon";
-          "on-click" = "night-shift";
-        };
-        battery = {
-          format = "{capacity}% {icon}";
-          "format-icons" = {
-            "charging" = ["󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅"];
-            "default" = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
-          };
-          "format-full" = "󰁹 ";
-          interval = 10;
-          states = {
-            warning = 20;
-            critical = 10;
-          };
-          tooltip = false;
-        };
-      }
-      {
-        layer = "top";
-        position = "bottom";
-        spacing = 0;
-        "margin-top" = 8;
-        "margin-left" = 8;
-        "margin-right" = 8;
-        "margin-bottom" = 8;
-        height = 36;
-        modules-center = ["hyprland/workspaces"];
 
         "hyprland/workspaces" = {
           "on-click" = "activate";
@@ -112,8 +77,67 @@
             "5" = [];
           };
         };
-      }
-    ];
+
+        tray = {spacing = 16;};
+
+        backlight = {
+          device = "intel_backlight";
+          format = "{icon}";
+          "format-icons" = [" " " " "" "" "" "" "" "" ""];
+        };
+
+        pulseaudio = {
+          format = "{icon}";
+          "format-bluetooth" = "󰂰";
+          nospacing = 1;
+          "tooltip-format" = "Volume : {volume}%";
+          "format-muted" = "󰝟";
+          "format-icons" = {
+            "headphone" = "";
+            "default" = ["󰖀" "󰕾" ""];
+          };
+          "on-click" = "sound-toggle";
+          "scroll-step" = 1;
+        };
+
+        "custom/caffeine" = {
+          format = "{}";
+          max-length = 5;
+          interval = 10;
+          exec = "caffeine-status-icon";
+          "on-click" = "caffeine";
+        };
+
+        "custom/night-shift" = {
+          format = "{}";
+          max-length = 5;
+          interval = 10;
+          exec = "night-shift-status-icon";
+          "on-click" = "night-shift";
+        };
+
+        battery = {
+          format = "{capacity}% {icon}";
+          "format-icons" = {
+            "charging" = ["󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅"];
+            "default" = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+          };
+          "format-full" = "󰁹 ";
+          interval = 10;
+          states = {
+            warning = 20;
+            critical = 10;
+          };
+          tooltip = false;
+        };
+
+        clock = {
+          "tooltip-format" = "<tt>{calendar}</tt>";
+          "format-alt" = "  {:%a, %d %b %Y}";
+          format = "󰥔  {:%I:%M %p}";
+        };
+      };
+    };
     style = ''
       * {
         border: none;
@@ -150,6 +174,10 @@
         padding: 2px 6px;
       }
 
+      window#waybar.hidden {
+        opacity: 0.5;
+      }
+
       #workspaces {
         background-color: transparent;
       }
@@ -180,27 +208,44 @@
         background-color: #${config.var.theme.colors.c1};
       }
 
-      #custom-logo {
-        font-size: ${toString config.var.theme.waybar.font-size}px;
-        color: #${config.var.theme.colors.accent};
+      #window > * {
+        font-family: "${config.var.theme.font-mono}";
       }
 
-      #clock,
-      #tray,
+      #memory,
+      #custom-power,
+      #custom-caffeine,
+      #custom-night-shift,
+      #battery,
       #backlight,
       #pulseaudio,
-      #custom-night-shift,
-      #battery{
+      #network,
+      #clock,
+      #tray,
+      #backlight{
         border-radius: 9px;
-        background-color: #ffffff;
-        color: #FF0000;
-        padding: 0 8px;
-        margin: 0 4px;
+        margin: 6px 3px;
+        padding: 6px 12px;
+        background-color: #${config.var.theme.colors.bgalt};
+        color: #${config.var.theme.colors.fgalt};
       }
 
       #tray menu {
         background-color: #${config.var.theme.colors.bgalt};
         color: #${config.var.theme.colors.fgalt};
+      }
+
+      #custom-logo {
+        padding-right: 7px;
+        font-size: ${toString config.var.theme.waybar.font-size}px;
+        color: #${config.var.theme.colors.accent};
+      }
+
+      @keyframes blink {
+        to {
+          background-color: #f38ba8;
+          color: #181825;
+        }
       }
 
       #battery.warning,
@@ -219,6 +264,25 @@
         background-color: #${config.var.theme.colors.bgalt};
         color: #${config.var.theme.colors.fgalt};
         animation: none;
+      }
+
+      #custom-power {
+        background-color: #${config.var.theme.colors.accent};
+        color: #${config.var.theme.colors.accentFg};
+      }
+
+
+      tooltip {
+        border-radius: 8px;
+        padding: 15px;
+        background-color: #${config.var.theme.colors.bgalt};
+        color: #${config.var.theme.colors.fgalt};
+      }
+
+      tooltip label {
+        padding: 5px;
+        background-color: #${config.var.theme.colors.bgalt};
+        color: #${config.var.theme.colors.fgalt};
       }
     '';
   };

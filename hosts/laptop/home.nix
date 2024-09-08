@@ -21,7 +21,7 @@
     ../../home/system/dunst
     ../../home/system/gtk
     ../../home/system/hyprland
-    ../../home/sysetm/mime
+    ../../home/system/mime
     ../../home/system/rofi
     ../../home/system/waybar
 
@@ -30,6 +30,7 @@
 
   home = {
     packages = with pkgs; [
+      #Apps
       firefox
     ];
 

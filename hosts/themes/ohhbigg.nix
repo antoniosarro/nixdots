@@ -6,10 +6,13 @@
   font-mono = "FiraCode Nerd Font Mono";
   font-size = 12;
 
-  rounding = 10;
-  gaps-in = 3;
-  gaps-out = 8;
-  border-size = 2;
+  rounding = 15;
+  gaps-in = 10;
+  gaps-out = 10 * 2;
+  active-opacity = 0.95;
+  inactive-opacity = 0.9;
+  blur = true;
+  border-size = 3;
   animation-speed = "fast";
   fetch = "fastfetch";
 

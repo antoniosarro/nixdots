@@ -181,8 +181,8 @@
           10));
 
       bindm = [
-        "$mod, mouse:272, movewindow" # Move Window (mouse)
-        "$mod, R, resizewindow" # Resize Window (mouse)
+        "$mainMod, mouse:272, movewindow" # Move Window (mouse)
+        "$mainMod, R, resizewindow" # Resize Window (mouse)
       ];
 
       bindl = [
