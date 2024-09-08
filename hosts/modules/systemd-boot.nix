@@ -6,8 +6,8 @@
         enable = true;
         consoleMode = "auto";
       };
-      tmp.cleanOnBoot = true;
     };
+    tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest;
   };
 }
