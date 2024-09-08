@@ -15,6 +15,7 @@
     ../../home/programs/shell
 
     # Scripts
+    ../../home/scripts
 
     # System
     ../../home/system/dunst
