@@ -7,7 +7,7 @@
         consoleMode = "auto";
       };
       tmp.cleanOnBoot = true;
-      kernelPackages = pkgs.linuxPackages_latest;
     };
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 }
