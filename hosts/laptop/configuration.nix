@@ -12,6 +12,7 @@
     ../modules/nix.nix
     ../modules/nvidia-blacklist.nix
     ../modules/power-profile.nix
+    ../modules/printer.nix
     ../modules/swap.nix
     ../modules/systemd-boot.nix
     ../modules/timezone.nix

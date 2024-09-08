@@ -19,6 +19,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # hyprland tiling Wayland compositor.
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
