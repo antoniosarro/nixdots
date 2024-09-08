@@ -7,8 +7,8 @@
   font-size = 12;
 
   rounding = 15;
-  gaps-in = 10;
-  gaps-out = 10 * 2;
+  gaps-in = 5;
+  gaps-out = 5 * 2;
   active-opacity = 0.95;
   inactive-opacity = 0.9;
   blur = true;

@@ -132,9 +132,27 @@
         };
 
         clock = {
-          "tooltip-format" = "<tt>{calendar}</tt>";
-          "format-alt" = "  {:%a, %d %b %Y}";
           format = "󰥔  {:%I:%M %p}";
+          "format-alt" = "  {:%a, %d %b %Y}";
+          "tooltip-format" = "<tt>{calendar}</tt>";
+          "calendar" = {
+            "mode" = "month";
+            "mode-mon-col" = 3;
+            "on-scroll" = 1;
+            "on-click-right" = "mode";
+            "format" = {
+              "months" = "<span color='#${config.var.theme.colors.fg}'><b>{}</b></span>";
+              "weekdays" = "<span color='#${config.var.theme.colors.accent}'><b>{}</b></span>";
+              "today" = "<span color='#${config.var.theme.colors.accent}'><b>{}</b></span>";
+            };
+          };
+          "actions" = {
+            "on-click-right" = "mode";
+            "on-click-forward" = "tz_up";
+            "on-click-backward" = "tz_down";
+            "on-scroll-up" = "shift_up";
+            "on-scroll-down" = "shift_down";
+          };
         };
       };
     };
