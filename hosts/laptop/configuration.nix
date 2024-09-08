@@ -3,7 +3,7 @@
     # modules
     ../modules/audio.nix
     ../modules/auto-upgrade.nix
-    ../mobules/bluetooth.nix
+    ../modules/bluetooth.nix
     ../modules/fonts.nix
     ../modules/graphics.nix
     ../modules/gvfs.nix
