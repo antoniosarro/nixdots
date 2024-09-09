@@ -9,10 +9,10 @@
     force = true;
     text = ''
       * {
-        background:     #1F1F28;
-        background-alt: #292936;
-        foreground:     #de6341;
-        selected:       #de6341;
+        background:     #${config.var.theme.bg};
+        background-alt: #${config.var.theme.bgalt};
+        foreground:     #${config.var.theme.accent};
+        selected:       #${config.var.theme.accent};
         active:         #A3BE8CFF;
         urgent:         #BF616AFF;
       }
@@ -75,7 +75,7 @@
           enabled:                     true;
           margin:                      0px;
           padding:                     0px;
-          border:                      0px solid;
+          border:                      1px solid;
           border-radius:               10px;
           border-color:                @border-colour;
           cursor:                      "default";

@@ -51,7 +51,7 @@
       # socials
       _64gram
       freetube
-      teamspeak-client
+      teamspeak_client
       vesktop
 
       # utils
