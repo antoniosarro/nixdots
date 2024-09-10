@@ -44,6 +44,17 @@
           ./hosts/laptop/configuration.nix
         ];
       };
+      desktop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          {
+            _module.args = {inherit inputs;};
+          }
+          inputs.disko.nixosModules.disko
+          inputs.home-manager.nixosModules.home-manager
+          ./hosts/desktop/configuration.nix
+        ];
+      };
     };
   };
 }

@@ -9,10 +9,10 @@
     force = true;
     text = ''
       * {
-        background:     #${config.var.theme.bg};
-        background-alt: #${config.var.theme.bgalt};
-        foreground:     #${config.var.theme.accent};
-        selected:       #${config.var.theme.accent};
+        background:     #${config.var.theme.colors.bg};
+        background-alt: #${config.var.theme.colors.bgalt};
+        foreground:     #${config.var.theme.colors.accent};
+        selected:       #${config.var.theme.colors.accent};
         active:         #A3BE8CFF;
         urgent:         #BF616AFF;
       }
@@ -355,7 +355,7 @@
           spacing:                     15px;
           margin:                      0px;
           padding:                     30px;
-          border:                      0px solid;
+          border:                      1px solid;
           border-radius:               0px;
           border-color:                @selected;
           background-color:            transparent;

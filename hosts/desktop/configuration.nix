@@ -10,7 +10,6 @@
     ../modules/home-manager.nix
     ../modules/network-manager.nix
     ../modules/nix.nix
-    ../modules/nvidia-blacklist.nix
     ../modules/power-profile.nix
     ../modules/printer.nix
     ../modules/swap.nix
@@ -20,7 +19,7 @@
     ../modules/usb.nix
     ../modules/users.nix
     ../modules/utils.nix
-    ../modules/virtualisation.nix
+    ../modules/virtualisation
     ../modules/zsh.nix
 
     # hardware

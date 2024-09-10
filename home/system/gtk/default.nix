@@ -15,8 +15,8 @@
     theme = {name = "FlatColor";};
 
     iconTheme = {
-      package = pkgs.moka-icon-theme;
-      name = "Moka";
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus";
     };
 
     font = {
