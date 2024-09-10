@@ -15,18 +15,19 @@
         ip = "127.0.0.1";
       };
     };
-    oci-containers.backend = "docker";
-
-    virtualisation.oci-containers.containers."watchtower" = {
-      autoStart = true;
-      image = "docker.io/containrrr/watchtower";
-      volumes = ["/var/run/docker.sock:/var/run/docker.sock"];
-      environment = {
-        TZ = "Europe/Rome";
-        WATCHTOWER_CLEANUP = "true";
-        WATCHTOWER_NO_RESTART = "true";
-        # Run every day at 6:00 EDT
-        WATCHTOWER_SCHEDULE = "0 0 3 * * *";
+    oci-containers = {
+      backend = "docker";
+      containers."watchtower" = {
+        autoStart = true;
+        image = "docker.io/containrrr/watchtower";
+        volumes = ["/var/run/docker.sock:/var/run/docker.sock"];
+        environment = {
+          TZ = "Europe/Rome";
+          WATCHTOWER_CLEANUP = "true";
+          WATCHTOWER_NO_RESTART = "true";
+          # Run every day at 6:00 EDT
+          WATCHTOWER_SCHEDULE = "0 0 3 * * *";
+        };
       };
     };
   };

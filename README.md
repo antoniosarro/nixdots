@@ -33,34 +33,24 @@
 ```sh
 curl https://raw.githubusercontent.com/antoniosarro/nixdots/main/hosts/<hostname>/disko.nix \
 -O /tmp/disko.nix
-```
 
-```sh
+nano /tmp/secret.key
+
 sudo nix --experimental-features "nix-command flakes" \
 run github:nix-community/disko -- \
 --mode disko /tmp/disko.nix
 ```
 
 > [!NOTE]
-> Use `lsblk` to check if disk are partitioned correctly.
+> Use `lsblk -f` to check if disk are partitioned correctly.
 
 ```sh
-git clone https://github.com/antoniosarro/nixdots /mnt/nixdots
-```
+nix-shell -p git
 
-```sh
-nixos-install --root /mnt \
+git clone https://github.com/antoniosarro/nixdots /tmp/nixdots
+
+sudo nixos-install --root /mnt \
 --flake /mnt/nixdots#hostname
 ```
 
 Reboot
-
-----
-
-```sh
-git clone https://github.com/antoniosarro/nixdots ~/.config/nixos
-```
-
-```sh
-sudo nixos-rebuild switch --flake ~/.config/nixos#hostname
-```
