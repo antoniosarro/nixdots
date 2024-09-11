@@ -32,7 +32,12 @@
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
     settings = {
-      monitor = [",preferred,auto,1"];
+      monitor = if config.var.hostname == "desktop"
+        then [",3440x1440@120,auto,1"]
+        else if config.var.hostname == "laptop"
+        then [",preferred,auto,1"]
+        else "";
+      
 
       exec-once = [
         "startup"

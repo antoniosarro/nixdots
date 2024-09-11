@@ -1,4 +1,4 @@
-{config, ...}: {
+{config, pkgs, ...}: {
   imports = [
     ./modules/vfio.nix
     ./modules/libvirt.nix
