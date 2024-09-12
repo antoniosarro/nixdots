@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   services = {
     blueman-applet.enable = true;
     network-manager-applet.enable = true;
@@ -26,30 +30,35 @@
           then config.var.theme.gaps-out
           else 0;
 
-        height = 44;
+        height = 30;
 
-        modules-left = ["custom/logo" "hyprland/window"];
+        modules-left = ["custom/logo"];
         modules-center = ["hyprland/workspaces"];
-        modules-right = [
-          "tray"
-          "backlight"
-          "pulseaudio"
-          "custom/caffeine"
-          "custom/night-shift"
-          "battery"
-          "clock"
-        ];
+
+        modules-right =
+          if config.var.hostname == "laptop"
+          then [
+            "tray"
+            "backlight"
+            "pulseaudio"
+            "custom/caffeine"
+            "custom/night-shift"
+            "battery"
+            "clock"
+          ]
+          else [
+            "tray"
+
+            "pulseaudio"
+            "custom/caffeine"
+            "custom/night-shift"
+            "clock"
+          ];
 
         "custom/logo" = {
           format = "  ";
           tooltip = false;
           on-click = "appmenu";
-        };
-
-        "hyprland/window" = {
-          "format" = "{title:30}";
-          "max-length" = 30;
-          "separate-outputs" = true;
         };
 
         "hyprland/workspaces" = {

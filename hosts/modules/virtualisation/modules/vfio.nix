@@ -8,7 +8,7 @@ with lib; let
   cfg = config.virtualisation.vfio;
 in {
   options.virtualisation.vfio = {
-    enable = mkEnableOption "VFIO Configuration";
+    enable = mkEnableOption " Configuration";
     devices = mkOption {
       type = types.listOf (types.strMatching "[0-9a-f]{4}:[0-9a-f]{4}");
       default = [];

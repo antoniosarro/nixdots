@@ -19,7 +19,7 @@
     ../modules/usb.nix
     ../modules/users.nix
     ../modules/utils.nix
-    # ../modules/virtualisation
+    ../modules/virtualisation
     ../modules/zsh.nix
 
     # hardware

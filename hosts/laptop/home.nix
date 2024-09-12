@@ -44,7 +44,6 @@
       freecad
       gnome-sound-recorder
       obsidian
-      orca-slicer
       vlc
       vscodium
 

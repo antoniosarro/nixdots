@@ -9,6 +9,7 @@
     # Programs
     ../../home/programs/btop
     ../../home/programs/fetch
+    ../../home/programs/firefox
     ../../home/programs/git
     ../../home/programs/kitty
     ../../home/programs/nextcloud
@@ -40,11 +41,9 @@
       bitwarden
       cameractrls
       easyeffects
-      firefox
       freecad
       gnome-sound-recorder
       obsidian
-      orca-slicer
       vlc
       vscodium
 
@@ -56,11 +55,15 @@
 
       # utils
       android-file-transfer
+      amdgpu_top
       cpupower-gui
       localsend
       pandoc
       unzip
       zip
+
+      # code
+      alejandra # nix code formatter
     ];
 
     file."wallpapers" = {

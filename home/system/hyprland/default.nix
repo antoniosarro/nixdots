@@ -32,12 +32,12 @@
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
     settings = {
-      monitor = if config.var.hostname == "desktop"
+      monitor =
+        if config.var.hostname == "desktop"
         then [",3440x1440@120,auto,1"]
         else if config.var.hostname == "laptop"
         then [",preferred,auto,1"]
         else "";
-      
 
       exec-once = [
         "startup"
@@ -99,6 +99,8 @@
       };
 
       # layerrule = "blur,waybar";
+
+      windowrulev2 = "noblur, title:^()$, class:^()$ ";
 
       misc = {
         vrr = 0;

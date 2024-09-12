@@ -1,0 +1,67 @@
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  minimal-firefox = pkgs.stdenv.mkDerivation {
+    name = "minimal-firefox";
+    src = pkgs.fetchgit {
+      url = "https://github.com/pdro-lucas/minimal-firefox.git";
+      hash = "sha256-NGt2Fpdc6A5TQoRN97oWXrj6V1J+9SYO8UAB78oXAXk=";
+    };
+
+    phases = ["postFetch"];
+    postFetch = ''
+      mkdir $out
+      cp -r $src/chrome/* $out
+    '';
+  };
+in {
+  programs.firefox = {
+    enable = true;
+    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+      extraPolicies = {
+        CaptivePortal = false;
+        DisableFirefoxStudies = true;
+        DisablePocket = true;
+        DisableTelemetry = true;
+        DisableFirefoxAccounts = true;
+        FirefoxHome = {
+          Pocket = false;
+          Snippets = false;
+        };
+        UserMessaging = {
+          ExtensionRecommendations = false;
+          SkipOnboarding = true;
+        };
+      };
+    };
+    profiles.default = {
+      id = 0;
+      isDefault = true;
+
+      # userChrome = builtins.concatStringsSep "\n" [
+      #     (builtins.readFile "${minimal-firefox}/chrome/userChrome.css")
+      #     (builtins.readFile "${minimal-firefox}/chrome/includes/cascade-config-mouse.css")
+      #     (builtins.readFile "${minimal-firefox}/chrome/includes/cascade-layout.css")
+      #     (builtins.readFile "${minimal-firefox}/chrome/includes/cascade-responsive-windows-fix.css")
+      #     (builtins.readFile "${minimal-firefox}/chrome/includes/cascade-floating-panel.css")
+      #     (builtins.readFile "${minimal-firefox}/chrome/includes/cascade-tabs.css")
+      #     (builtins.readFile "${minimal-firefox}/chrome/includes/tabcenter-reborn/cascade-tcr.css")
+      #     (builtins.readFile "${minimal-firefox}/chrome/includes/side-view/cascade-sideview.css")
+      #     (builtins.readFile "${minimal-firefox}/chrome/includes/cascade-nav-bar.css")
+      # ];
+
+      extensions = [
+        inputs.firefox-addons.packages."x86_64-linux".tabcenter-reborn
+        inputs.firefox-addons.packages."x86_64-linux".adaptive-tab-bar-colour
+      ];
+    };
+  };
+
+  home.file.".mozilla/firefox/default/chrome" = {
+    source = minimal-firefox;
+    recursive = true;
+    force = true;
+  };
+}
