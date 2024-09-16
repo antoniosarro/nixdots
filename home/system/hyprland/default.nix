@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  inputs,
   ...
 }: {
   imports = [
@@ -12,24 +11,27 @@
   ];
 
   home.packages = with pkgs; [
-    # Screenshot
+    # system clipboard
+    wl-clipboard
+
+    # screenshot
     grimblast
     swappy
 
-    # Brightness
+    # brightness
     brightnessctl
 
-    # Nightshift
+    # nightshift
     wlsunset
 
-    # Polkit
+    # polkit
     polkit_gnome
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    systemd.variables = ["--all"];
 
     settings = {
       monitor =
@@ -55,7 +57,13 @@
 
         "HYPRCURSOR_THEME,Bibata-Modern-Amber"
         "HYPRCURSOR_SIZE,20"
+
+        "NIXOS_OZONE_WL,1"
+        "WLR_NO_HARDWARE_CURSORS,1"
       ];
+
+      environment.sessionVariables = {
+      };
 
       input = {
         kb_layout = config.var.keyboardLayout;
@@ -70,9 +78,9 @@
       };
 
       general = {
-        gaps_in = config.var.theme.gaps-in;
-        gaps_out = config.var.theme.gaps-out;
-        border_size = config.var.theme.border-size;
+        gaps_in = 5;
+        gaps_out = 5;
+        border_size = 2;
         "col.active_border" = "rgba(${config.var.theme.colors.accent}ff)";
         "col.inactive_border" = "rgba(00000055)";
         layout = "dwindle";
@@ -80,7 +88,7 @@
       };
 
       decoration = {
-        rounding = config.var.theme.rounding;
+        rounding = 15;
         drop_shadow = false;
 
         blur = {

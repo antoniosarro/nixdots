@@ -11,30 +11,13 @@
     enable = true;
     settings = {
       mainBar = {
-        layer = config.var.theme.waybar.position;
-        position = config.var.theme.waybar.position;
+        layer = "top";
+        position = "top";
         spacing = 0;
-
-        "margin-top" =
-          if
-            config.var.theme.waybar.float
-            && config.var.theme.waybar.position == "top"
-          then config.var.theme.gaps-out
-          else 0;
-        "margin-left" =
-          if config.var.theme.waybar.float
-          then config.var.theme.gaps-out
-          else 0;
-        "margin-right" =
-          if config.var.theme.waybar.float
-          then config.var.theme.gaps-out
-          else 0;
-
         height = 30;
 
         modules-left = ["custom/logo"];
         modules-center = ["hyprland/workspaces"];
-
         modules-right =
           if config.var.hostname == "laptop"
           then [
@@ -48,7 +31,6 @@
           ]
           else [
             "tray"
-
             "pulseaudio"
             "custom/caffeine"
             "custom/night-shift"
@@ -150,7 +132,7 @@
             "on-scroll" = 1;
             "on-click-right" = "mode";
             "format" = {
-              "months" = "<span color='#${config.var.theme.colors.fg}'><b>{}</b></span>";
+              "months" = "<span color='#${config.var.theme.colors.text}'><b>{}</b></span>";
               "weekdays" = "<span color='#${config.var.theme.colors.accent}'><b>{}</b></span>";
               "today" = "<span color='#${config.var.theme.colors.accent}'><b>{}</b></span>";
             };
@@ -170,35 +152,33 @@
         border: none;
         border-radius: 0;
         min-height: 0;
-        font-family: "${config.var.theme.font}";
-        color: #${config.var.theme.colors.fg};
+        font-family: "${config.var.theme.font.base}";
+        color: #${config.var.theme.colors.text};
         font-weight: 700;
       }
 
       window#waybar {
-        background-color: ${
-        if config.var.theme.waybar.transparent
-        then "rgba(0, 0, 0, 0)"
-        else "#${config.var.theme.colors.bg}"
-      };
+        background-color: rgba(0, 0, 0, 0);
         transition-property: background-color;
         transition-duration: 0.5s;
-        border-radius: ${
-        if config.var.theme.waybar.float
-        then toString config.var.theme.rounding
-        else "0"
-      }px;
-        font-size: ${toString config.var.theme.waybar.font-size}px;
+        border-radius: 15px;
+        font-size: 15px;
       }
 
       .modules-left, .modules-center, .modules-right {
-        border-radius: ${
-        if config.var.theme.waybar.float
-        then toString config.var.theme.rounding
-        else "0"
-      }px;
-        background-color: #${config.var.theme.colors.bg};
-        padding: 2px 6px;
+        border-radius: 15px;
+        background-color: #${config.var.theme.colors.background};
+        padding: 0px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+      .modules-left {
+        margin-left:5px;
+      }
+
+      .modules-right {
+        margin-right:5px;
       }
 
       window#waybar.hidden {
@@ -213,15 +193,16 @@
         all: initial; /* Remove GTK theme values (waybar #1351) */
         min-width: 0; /* Fix weird spacing in materia (waybar #450) */
         box-shadow: inset 0 -3px transparent; /* Use box-shadow instead of border so the text isn't offset */
-        padding: 6px 18px;
-        margin: 6px 3px;
-        border-radius: 4px;
-        background-color: #${config.var.theme.colors.bgalt};
-        color: #${config.var.theme.colors.fgalt};
+        padding: 2px 13px;
+        margin: 3px;
+        border-radius: 9px;
+        background-color: #${config.var.theme.colors.background_alternative};
+        color: #${config.var.theme.colors.text};
+        transition: all 0.3s ease-in-out;
       }
 
       #workspaces button.active {
-        color: #${config.var.theme.colors.accentFg};
+        color: #${config.var.theme.colors.background};
         background-color: #${config.var.theme.colors.accent};
       }
 
@@ -232,16 +213,16 @@
       }
 
       #workspaces button.urgent {
-        background-color: #${config.var.theme.colors.c1};
+        background-color: #f38ba8;
       }
 
       #window > * {
-        font-family: "${config.var.theme.font-mono}";
+        font-family: "${config.var.theme.font.mono}";
       }
 
       #memory,
-      #custom-power,
       #custom-caffeine,
+      #custom-logo,
       #custom-night-shift,
       #battery,
       #backlight,
@@ -251,29 +232,23 @@
       #tray,
       #backlight{
         border-radius: 9px;
-        margin: 6px 3px;
-        padding: 6px 12px;
-        background-color: #${config.var.theme.colors.bgalt};
-        color: #${config.var.theme.colors.fgalt};
+        margin: 3px;
+        padding: 8px 12px;
+        background-color: #${config.var.theme.colors.background_alternative};
+        color: #${config.var.theme.colors.text};
       }
 
       #tray menu {
-        background-color: #${config.var.theme.colors.bgalt};
-        color: #${config.var.theme.colors.fgalt};
+        background-color: #${config.var.theme.colors.background_alternative};
+        color: #${config.var.theme.colors.text};
       }
 
       #custom-logo {
-        padding-right: 7px;
-        font-size: ${toString config.var.theme.waybar.font-size}px;
+        font-size: 15px;
         color: #${config.var.theme.colors.accent};
+        padding: 2px 6px;
       }
 
-      @keyframes blink {
-        to {
-          background-color: #f38ba8;
-          color: #181825;
-        }
-      }
 
       #battery.warning,
       #battery.critical,
@@ -287,29 +262,30 @@
         animation-direction: alternate;
       }
 
+      @keyframes blink {
+        to {
+          background-color: #f38ba8;
+          color: #181825;
+        }
+      }
+
       #battery.charging {
-        background-color: #${config.var.theme.colors.bgalt};
-        color: #${config.var.theme.colors.fgalt};
+        background-color: #${config.var.theme.colors.background_alternative};
+        color: #${config.var.theme.colors.text};
         animation: none;
       }
-
-      #custom-power {
-        background-color: #${config.var.theme.colors.accent};
-        color: #${config.var.theme.colors.accentFg};
-      }
-
 
       tooltip {
         border-radius: 8px;
         padding: 15px;
-        background-color: #${config.var.theme.colors.bgalt};
-        color: #${config.var.theme.colors.fgalt};
+        background-color: #${config.var.theme.colors.background_alternative};
+        color: #${config.var.theme.colors.text};
       }
 
       tooltip label {
         padding: 5px;
-        background-color: #${config.var.theme.colors.bgalt};
-        color: #${config.var.theme.colors.fgalt};
+        background-color: #${config.var.theme.colors.background_alternative};
+        color: #${config.var.theme.colors.text};
       }
     '';
   };

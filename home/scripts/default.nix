@@ -1,6 +1,7 @@
 {
   imports = [
     ./brightness
+    ./caffeine
     ./nightshift
     ./nixdots
     ./notification

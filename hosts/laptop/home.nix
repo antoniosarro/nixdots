@@ -14,6 +14,7 @@
     ../../home/programs/nextcloud
     ../../home/programs/shell
     ../../home/programs/spicetify
+    ../../home/programs/vesktop
     ../../home/programs/zathura
 
     # Scripts
@@ -51,7 +52,6 @@
       _64gram
       freetube
       teamspeak_client
-      vesktop
 
       # utils
       android-file-transfer

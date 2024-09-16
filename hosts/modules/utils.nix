@@ -40,5 +40,7 @@
     wget
     # command line tool for transferring files with URL syntax
     curl
+    # Nix/NixOS package version diff tool
+    nvd
   ];
 }

@@ -1,0 +1,7 @@
+keys:
+  - &ta age18tsre2nhghcvh67llnad9q54x8d3zrr8ywvsh6cykup3rhapjgmq2hyeuz
+creation_rules:
+  - path_regex: hosts/desktop/secrets/secrets.yaml$
+    key_groups:
+      - age:
+        - *ta

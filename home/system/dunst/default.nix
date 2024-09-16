@@ -37,14 +37,14 @@
         sticky_history = "yes";
         history_length = 20;
         always_run_script = true;
-        corner_radius = config.var.theme.rounding;
+        corner_radius = 15;
         follow = "mouse";
-        font = config.var.theme.font;
+        font = config.var.theme.font.base;
         format = "<b>%s</b>\\n%b";
-        progress_bar_corner_radius = config.var.theme.rounding - 10;
-        frame_color = "#" + config.var.theme.colors.bg;
+        progress_bar_corner_radius = 5;
+        frame_color = "#" + config.var.theme.colors.background;
         highlight = "#" + config.var.theme.colors.accent;
-        foreground = "#" + config.var.theme.colors.fg;
+        foreground = "#" + config.var.theme.colors.background;
         frame_width = 1;
         offset = "0x10";
         horizontal_padding = 10;
@@ -67,16 +67,16 @@
       fullscreen_delay_everything = {fullscreen = "delay";};
 
       urgency_critical = {
-        background = "#" + config.var.theme.colors.c1;
-        foreground = "#" + config.var.theme.colors.c0;
+        background = "#" + "f38ba8";
+        foreground = "#" + "1e1e2e";
       };
       urgency_low = {
-        background = "#" + config.var.theme.colors.bgalt;
-        foreground = "#" + config.var.theme.colors.fgalt;
+        background = "#" + config.var.theme.colors.background_alternative;
+        foreground = "#" + config.var.theme.colors.background;
       };
       urgency_normal = {
-        background = "#" + config.var.theme.colors.bgalt;
-        foreground = "#" + config.var.theme.colors.fgalt;
+        background = "#" + config.var.theme.colors.background_alternative;
+        foreground = "#" + config.var.theme.colors.text;
       };
     };
   };

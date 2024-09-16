@@ -346,9 +346,9 @@
 
           ## USER VARIABLES -- YOU CAN CHANGE THESE
 
-          lc="$reset$bold''$${config.var.theme.colors.accentName}" # labels
-          nc="$reset$bold''$${config.var.theme.colors.accentName}" # labels
-          hn="$reset$bold''$${config.var.theme.colors.accentName}" # labels
+          lc="$reset$bold''$yellow" # labels
+          nc="$reset$bold''$yellow" # labels
+          hn="$reset$bold''$yellow" # labels
           ic="$reset$white"          # info
           c0="$reset$grey"           # first color
           c1="$reset$white"          # second color

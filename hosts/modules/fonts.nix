@@ -8,6 +8,7 @@
       (nerdfonts.override {fonts = ["FiraCode"];})
       inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
       inputs.apple-fonts.packages.${pkgs.system}.sf-mono-nerd
+      noto-fonts-color-emoji
     ];
 
     enableDefaultPackages = false;

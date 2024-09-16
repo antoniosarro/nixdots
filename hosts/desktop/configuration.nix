@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     # modules
     ../modules/audio.nix
@@ -10,6 +14,7 @@
     ../modules/home-manager.nix
     ../modules/network-manager.nix
     ../modules/nix.nix
+    ../modules/openrgb.nix
     ../modules/power-profile.nix
     ../modules/printer.nix
     ../modules/swap.nix
@@ -20,6 +25,7 @@
     ../modules/users.nix
     ../modules/utils.nix
     ../modules/virtualisation
+    ../modules/xdg.nix
     ../modules/zsh.nix
 
     # hardware

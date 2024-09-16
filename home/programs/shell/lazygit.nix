@@ -4,7 +4,7 @@
     settings = {
       gui.theme = {
         ligthTheme = false;
-        activeBorderColor = ["${config.var.theme.colors.accentName}" "bold"];
+        activeBorderColor = ["magenta" "bold"];
         inactiveBorderColor = ["black"];
         selectedLineBgColor = ["default"];
       };

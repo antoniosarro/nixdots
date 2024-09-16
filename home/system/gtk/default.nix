@@ -20,8 +20,8 @@
     };
 
     font = {
-      name = config.var.theme.font;
-      size = config.var.theme.font-size;
+      name = config.var.theme.font.base;
+      size = config.var.theme.font.size;
     };
 
     gtk3.extraConfig = {
@@ -78,62 +78,62 @@
     };
 
     ".local/share/themes/FlatColor/colors2".text = ''
-      bg_color:#${config.var.theme.colors.bg}
-      color0:#${config.var.theme.colors.c0}
-      color1:#${config.var.theme.colors.c1}
-      color2:#${config.var.theme.colors.c2}
-      color3:#${config.var.theme.colors.c3}
-      color4:#${config.var.theme.colors.c4}
-      color5:#${config.var.theme.colors.c5}
-      color6:#${config.var.theme.colors.c6}
-      color7:#${config.var.theme.colors.c7}
-      color8:#${config.var.theme.colors.c8}
-      color9:#${config.var.theme.colors.c9}
-      color10:#${config.var.theme.colors.c10}
-      color11:#${config.var.theme.colors.c11}
-      color12:#${config.var.theme.colors.c12}
-      color13:#${config.var.theme.colors.c13}
-      color14:#${config.var.theme.colors.c14}
-      color15:#${config.var.theme.colors.c15}
-      text_color:#${config.var.theme.colors.fg}
+      bg_color:#${config.var.theme.colors.background}
+      color0:#1e1e2e
+      color1:#f38ba8
+      color2:#a6e3a1
+      color3:#fab387
+      color4:#89b4fa
+      color5:#A594FD
+      color6:#74c7ec
+      color7:#cdd6f4
+      color8:#313244
+      color9:#eba0ac
+      color10:#94e2d5
+      color11:#f9e2af
+      color12:#b4befe
+      color13:#f5c2e7
+      color14:#94e2d5
+      color15:#bac2de
+      text_color:#${config.var.theme.colors.text}
       selected_bg_color:#${config.var.theme.colors.accent}
-      selected_fg_color:#${config.var.theme.colors.accentFg}
-      tooltip_bg_color:#${config.var.theme.colors.bgalt}
-      tooltip_fg_color:#${config.var.theme.colors.fgalt}
-      titlebar_bg_color:#${config.var.theme.colors.bgalt}
-      titlebar_fg_color:#${config.var.theme.colors.fgalt}
-      menu_bg_color:#${config.var.theme.colors.bgalt}
-      menu_fg_color:#${config.var.theme.colors.fgalt}
+      selected_fg_color:#${config.var.theme.colors.background}
+      tooltip_bg_color:#${config.var.theme.colors.background_alternative}
+      tooltip_fg_color:#${config.var.theme.colors.text}
+      titlebar_bg_color:#${config.var.theme.colors.background_alternative}
+      titlebar_fg_color:#${config.var.theme.colors.text}
+      menu_bg_color:#${config.var.theme.colors.background_alternative}
+      menu_fg_color:#${config.var.theme.colors.text}
       link_color:#${config.var.theme.colors.accent}
     '';
 
     ".local/share/themes/FlatColor/colors3".text = ''
-      @define-color color0 #${config.var.theme.colors.c0};
-      @define-color color1 #${config.var.theme.colors.c1};
-      @define-color color2 #${config.var.theme.colors.c2};
-      @define-color color3 #${config.var.theme.colors.c3};
-      @define-color color4 #${config.var.theme.colors.c4};
-      @define-color color5 #${config.var.theme.colors.c5};
-      @define-color color6 #${config.var.theme.colors.c6};
-      @define-color color7 #${config.var.theme.colors.c7};
-      @define-color color8 #${config.var.theme.colors.c8};
-      @define-color color9 #${config.var.theme.colors.c9};
-      @define-color color10 #${config.var.theme.colors.c10};
-      @define-color color11 #${config.var.theme.colors.c11};
-      @define-color color12 #${config.var.theme.colors.c12};
-      @define-color color13 #${config.var.theme.colors.c13};
-      @define-color color14 #${config.var.theme.colors.c14};
-      @define-color color15 #${config.var.theme.colors.c15};
+      @define-color color0 #1e1e2e;
+      @define-color color1 #f38ba8;
+      @define-color color2 #a6e3a1;
+      @define-color color3 #fab387;
+      @define-color color4 #89b4fa;
+      @define-color color5 #A594FD;
+      @define-color color6 #74c7ec;
+      @define-color color7 #cdd6f4;
+      @define-color color8 #313244;
+      @define-color color9 #eba0ac;
+      @define-color color10 #94e2d5;
+      @define-color color11 #f9e2af;
+      @define-color color12 #b4befe;
+      @define-color color13 #f5c2e7;
+      @define-color color14 #94e2d5;
+      @define-color color15 #bac2de;
       @define-color selected_bg_color #${config.var.theme.colors.accent};
-      @define-color selected_fg_color #${config.var.theme.colors.accentFg};
+      @define-color selected_fg_color #${config.var.theme.colors.background};
 
-      @define-color bg_color #${config.var.theme.colors.bg};
-      @define-color fg_color #${config.var.theme.colors.fg};
+      @define-color bg_color #${config.var.theme.colors.background};
+      @define-color fg_color #${config.var.theme.colors.text};
       @define-color base_color @bg_color;
       @define-color text_color @fg_color;
       @define-color text_color_disabled mix(@text_color, @base_color, 0.4);
-      @define-color tooltip_bg_color #${config.var.theme.colors.bgalt};
-      @define-color tooltip_fg_color #${config.var.theme.colors.fgalt};
+      @define-color tooltip_bg_color #${config.var.theme.colors.background_alternative};
+      @define-color tooltip_fg_color #${config.var.theme.colors.text};
     '';
   };
 }

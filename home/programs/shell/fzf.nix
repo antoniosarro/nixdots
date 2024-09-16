@@ -3,12 +3,12 @@
     enable = true;
     enableZshIntegration = true;
     colors = {
-      "fg+" = config.var.theme.colors.accentName;
+      "fg+" = "magenta";
       "bg+" = "-1";
       "fg" = "white";
       "bg" = "-1";
       "prompt" = "grey";
-      "pointer" = config.var.theme.colors.accentName;
+      "pointer" = "magenta";
     };
     defaultOptions = [
       "--margin=1"

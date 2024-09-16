@@ -9,8 +9,8 @@
     force = true;
     text = ''
       * {
-        background:     #${config.var.theme.colors.bg};
-        background-alt: #${config.var.theme.colors.bgalt};
+        background:     #${config.var.theme.colors.background};
+        background-alt: #${config.var.theme.colors.background_alternative};
         foreground:     #${config.var.theme.colors.accent};
         selected:       #${config.var.theme.colors.accent};
         active:         #A3BE8CFF;
@@ -27,7 +27,7 @@
         show-icons:                 true;
         display-drun:               " Apps";
         drun-display-format:        "{name}";
-        font:                        "${config.var.theme.font} 10";
+        font:                        "${config.var.theme.font.base} 10";
         window-format:              "{w} · {c} · {t}";
       }
 
@@ -342,7 +342,7 @@
           enabled:                     true;
           margin:                      0px;
           padding:                     0px;
-          border:                      0px solid;
+          border:                      1px solid;
           border-radius:               20px;
           border-color:                @selected;
           cursor:                      "default";
@@ -355,7 +355,7 @@
           spacing:                     15px;
           margin:                      0px;
           padding:                     30px;
-          border:                      1px solid;
+          border:                      0px solid;
           border-radius:               0px;
           border-color:                @selected;
           background-color:            transparent;
@@ -396,7 +396,7 @@
           border-radius:               100%;
           background-color:            @active;
           text-color:                  @background;
-          font:                        "${config.var.theme.font} 10";
+          font:                        "${config.var.theme.font.base} 10";
       }
 
       /*****----- Message -----*****/
@@ -466,7 +466,7 @@
           cursor:                      pointer;
       }
       element-text {
-          font:                        "${config.var.theme.font} 20";
+          font:                        "${config.var.theme.font.base} 20";
           background-color:            transparent;
           text-color:                  inherit;
           cursor:                      inherit;
@@ -491,7 +491,7 @@
       @theme "~/.config/rofi/theme.rasi"
 
       * {
-          font: "${config.var.theme.font} 10";
+          font: "${config.var.theme.font.base} 10";
       }
 
       /*

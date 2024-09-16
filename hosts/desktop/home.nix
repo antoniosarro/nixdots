@@ -1,6 +1,8 @@
 {
-  pkgs,
+  inputs,
+  lib,
   config,
+  pkgs,
   ...
 }: {
   imports = [
@@ -13,8 +15,10 @@
     ../../home/programs/git
     ../../home/programs/kitty
     ../../home/programs/nextcloud
+    ../../home/programs/nvim
     ../../home/programs/shell
     ../../home/programs/spicetify
+    ../../home/programs/vesktop
     ../../home/programs/zathura
 
     # Scripts
@@ -44,14 +48,15 @@
       freecad
       gnome-sound-recorder
       obsidian
-      vlc
+      mpv
       vscodium
+      protonmail-desktop
 
       # socials
       _64gram
       freetube
       teamspeak_client
-      vesktop
+      streamlink
 
       # utils
       android-file-transfer

@@ -16,21 +16,19 @@ in {
     colorScheme = "custom";
 
     customColorScheme = {
-      text = "${config.var.theme.colors.fg}";
-      subtext = "${config.var.theme.colors.fgalt}";
-      sidebar-text = "${config.var.theme.colors.fgalt}";
-      main = "${config.var.theme.colors.bg}";
-      sidebar = "${config.var.theme.colors.bg}";
-      background = "${config.var.theme.colors.bg}";
-      player = "${config.var.theme.colors.bg}";
-      card = "${config.var.theme.colors.bg}";
-      shadow = "000000";
-      selected-row = "${config.var.theme.colors.bgalt}";
-      button = "${config.var.theme.colors.accent}";
-      button-active = "${config.var.theme.colors.accent}";
-      button-disabled = "${config.var.theme.colors.bgalt}";
-      tab-active = "${config.var.theme.colors.accent}";
-      misc = "${config.var.theme.colors.fgalt}";
+      accent = config.var.theme.colors.accent;
+      accent-active = config.var.theme.colors.accent;
+      accent-inactive = "121212";
+      banner = config.var.theme.colors.accent;
+      border-active = config.var.theme.colors.accent;
+      border-inactive = "535353";
+      header = "535353";
+      highlight = "1a1a1a";
+      main = "121212";
+      notification = "4687d6";
+      notification-error = "e22134";
+      subtext = "b3b3b3";
+      text = "FFFFFF";
     };
 
     enabledExtensions = with spicePkgs.extensions; [

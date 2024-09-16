@@ -13,19 +13,6 @@
     syntaxHighlighting.enable = true;
     historySubstringSearch.enable = true;
 
-    initExtraFirst = ''
-      bindkey -e
-      ${
-        if config.var.theme.fetch == "neofetch"
-        then pkgs.neofetch + "/bin/neofetch"
-        else if config.var.theme.fetch == "nerdfetch"
-        then "nerdfetch"
-        else if config.var.theme.fetch == "pfetch"
-        then "echo; ${pkgs.pfetch}/bin/pfetch"
-        else ""
-      }
-    '';
-
     history = {
       ignoreDups = true;
       save = 1000000;
@@ -53,9 +40,6 @@
       open = "${pkgs.xdg_utils}/bin/xdg-open";
       icat = "${pkgs.kitty}/bin/kitty +kitten icat";
       wireguard-import = "nmcli connection import type wireguard file";
-      neorg = "cd ~/nextcloud/neorg && vim -c ':ZenMode' -c ':Telescope find_files' index.norg";
-      notes = "cd ~/nextcloud/Notes && vim -c ':ZenMode' -c ':Telescope find_files' index.md";
-      note = "notes";
 
       # git
       ga = "git add";

@@ -8,7 +8,7 @@
       };
       background = {
         monitor = "";
-        path = "$HOME/wallpapers/${config.var.theme.wallpaper_blur}";
+        path = "$HOME/wallpapers/${config.var.theme.wallpaper.blur}";
       };
       input-field = {
         monitor = "";
@@ -35,7 +35,7 @@
           text = ''cmd[update:1000] echo "$(date '+%A, %B %d, %Y')"'';
           color = "rgb(222, 99, 65)";
           font_size = 20;
-          font_family = config.var.theme.font;
+          font_family = config.var.theme.font.base;
           position = "-100, 160";
           halign = "right";
           valign = "bottom";
@@ -45,7 +45,7 @@
           text = ''cmd[update:1000] echo "$(date '+%r')"'';
           color = "rgb(222, 99, 65)";
           font_size = 30;
-          font_family = config.var.theme.font;
+          font_family = config.var.theme.font.base;
           position = "0, 300";
           halign = "center";
           valign = "center";
@@ -55,7 +55,7 @@
           text = "$USER";
           color = "rgb(222, 99, 65)";
           font_size = 20;
-          font_family = config.var.theme.font;
+          font_family = config.var.theme.font.base;
           position = "-100, 120";
           halign = "right";
           valign = "bottom";

@@ -7,35 +7,35 @@
     enable = true;
     settings = {
       # Font
-      font_family = config.var.theme.font-mono;
-      font_size = config.var.theme.font-size;
+      font_family = config.var.theme.font.mono;
+      font_size = config.var.theme.font.size;
 
       #Theme
-      background = "#" + config.var.theme.colors.bg;
+      background = "#" + config.var.theme.colors.background;
       url_color = "#" + config.var.theme.colors.accent;
-      color0 = "#" + config.var.theme.colors.c0;
-      color8 = "#" + config.var.theme.colors.c8;
-      color1 = "#" + config.var.theme.colors.c1;
-      color9 = "#" + config.var.theme.colors.c9;
-      color2 = "#" + config.var.theme.colors.c2;
-      color10 = "#" + config.var.theme.colors.c10;
-      color3 = "#" + config.var.theme.colors.c3;
-      color11 = "#" + config.var.theme.colors.c11;
-      color4 = "#" + config.var.theme.colors.c4;
-      color12 = "#" + config.var.theme.colors.c12;
-      color5 = "#" + config.var.theme.colors.c5;
-      color13 = "#" + config.var.theme.colors.c13;
-      color6 = "#" + config.var.theme.colors.c6;
-      color14 = "#" + config.var.theme.colors.c14;
-      color7 = "#" + config.var.theme.colors.c7;
-      color15 = "#" + config.var.theme.colors.c15;
-      cursor = "#" + config.var.theme.colors.fg;
-      cursor_text_color = "#" + config.var.theme.colors.bg;
-      selection_foreground = "#" + config.var.theme.colors.accentFg;
+      color0 = "#" + "1e1e2e";
+      color8 = "#" + "313244";
+      color1 = "#" + "f38ba8";
+      color9 = "#" + "eba0ac";
+      color2 = "#" + "a6e3a1";
+      color10 = "#" + "94e2d5";
+      color3 = "#" + "fab387";
+      color11 = "#" + "f9e2af";
+      color4 = "#" + "89b4fa";
+      color12 = "#" + "b4befe";
+      color5 = "#" + "A594FD";
+      color13 = "#" + "f5c2e7";
+      color6 = "#" + "74c7ec";
+      color14 = "#" + "94e2d5";
+      color7 = "#" + "cdd6f4";
+      color15 = "#" + "bac2de";
+      cursor = "#" + config.var.theme.colors.text;
+      cursor_text_color = "#" + config.var.theme.colors.background;
+      selection_foreground = "#" + config.var.theme.colors.background;
       selection_background = "#" + config.var.theme.colors.accent;
 
       # Window
-      window_padding_width = config.var.theme.gaps-in;
+      window_padding_width = 5;
     };
   };
 }
