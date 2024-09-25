@@ -8,18 +8,14 @@
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
         adaptive-tab-bar-colour
         auto-tab-discard
-        canvasblocker
         clearurls
         darkreader
         multi-account-containers
-        old-reddit-redirect
         privacy-badger
-        reddit-enhancement-suite
         refined-github
         sidebery
         temporary-containers
         ublock-origin
-        view-image
       ];
       settings = {
         # General
@@ -29,12 +25,6 @@
         "browser.ctrlTab.recentlyUsedOrder" = false;
         "browser.download.useDownloadDir" = false;
         "browser.translations.neverTranslateLanguages" = "it";
-        "privacy.clearOnShutdown.cache" = true;
-        "privacy.clearOnShutdown.downloads" = true;
-        "privacy.clearOnShutdown.formdata" = true;
-        "privacy.clearOnShutdown.cookies" = false;
-        "privacy.clearOnShutdown.history" = false;
-        "privacy.clearOnShutdown.sessions" = false;
         "devtools.chrome.enabled" = true;
         "browser.tabs.crashReporting.sendReport" = false;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -77,7 +67,7 @@
         "network.dns.echconfig.enabled" = true;
 
         # Disable telemetry for privacy reasons
-        "toolkit.telemetry.archive.enabled" = false;
+        "toolkit.telemetry.archive.enabled" = true;
         "toolkit.telemetry.enabled" = false;
         "toolkit.telemetry.server" = "";
         "toolkit.telemetry.unified" = false;
@@ -112,8 +102,8 @@
 
         # disable EME encrypted media extension (Providers can get DRM
         # through this if they include a decryption black-box program)
-        "browser.eme.ui.enabled" = false;
-        "media.eme.enabled" = false;
+        # "browser.eme.ui.enabled" = false;
+        # "media.eme.enabled" = false;
 
         # don't predict network requests
         "network.predictor.enabled" = false;

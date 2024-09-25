@@ -43,7 +43,13 @@
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
   };
 
-  outputs = inputs @ {nixpkgs, ...}: {
+  outputs = inputs @ {nixpkgs, ...}: let
+    allSystems = ["x86_64-linux"];
+
+    forAllSystems = fn:
+      nixpkgs.lib.genAttrs allSystems
+      (system: fn {pkgs = import nixpkgs {inherit system;};});
+  in {
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -68,5 +74,17 @@
         ];
       };
     };
+    devShells = forAllSystems ({pkgs}: {
+      golang_latest = pkgs.mkShell {
+        shellHook = ''
+          $SHELL
+        '';
+        packages = with pkgs; [
+          go
+          gotools
+          golangci-lint
+        ];
+      };
+    });
   };
 }

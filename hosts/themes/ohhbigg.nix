@@ -14,7 +14,7 @@
     background = "0B0B0B";
     background_alternative = "211F1D";
     text = "EAF0F5";
-    accent = "FF9933";
+    accent = "f97316";
 
     base00 = "#0B0B0B";
     base01 = "#0f0f0f";
@@ -22,7 +22,7 @@
 
     base05 = "#EAF0F5";
 
-    base0A = "#FF9933";
+    base0A = "#f97316";
 
     base0C = "#FFBA75";
   };

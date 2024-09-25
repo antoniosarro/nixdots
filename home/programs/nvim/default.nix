@@ -27,6 +27,11 @@
 
     ./plug/statusline/lualine.nix
 
+    ./plug/treesitter/treesitter-context.nix
+    ./plug/treesitter/treesitter-textobjects.nix
+    ./plug/treesitter/treesitter.nix
+
+    ./plug/ui/alpha.nix
     ./plug/ui/bufferline.nix
     ./plug/ui/dressing.nix
     ./plug/ui/indent-blankline.nix
@@ -35,8 +40,18 @@
     ./plug/ui/presence.nix
     ./plug/ui/telescope.nix
 
+    ./plug/utils/colorizer.nix
+    ./plug/utils/comment-box.nix
+    ./plug/utils/comment.nix
+    ./plug/utils/grapple.nix
     ./plug/utils/hardtime.nix
+    ./plug/utils/illuminate.nix
+    ./plug/utils/markview.nix
+    ./plug/utils/mini.nix
     ./plug/utils/tree.nix
+    ./plug/utils/ufo.nix
+    ./plug/utils/undotree.nix
+    ./plug/utils/wakatime.nix
     ./plug/utils/which-key.nix
   ];
 }

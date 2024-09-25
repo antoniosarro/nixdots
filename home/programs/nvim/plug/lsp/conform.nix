@@ -21,6 +21,12 @@
             "prettier"
           ]
         ];
+        scss = [
+          [
+            "prettierd"
+            "prettier"
+          ]
+        ];
         javascript = [
           [
             "prettierd"
@@ -60,6 +66,11 @@
         ];
         go = ["goimports" "gofmt"];
         rust = ["rustfmt"];
+        svelte = [
+          "prettierd"
+          "prettier"
+        ];
+        shellscript = ["shellcheck" "shfmt"];
       };
     };
   };

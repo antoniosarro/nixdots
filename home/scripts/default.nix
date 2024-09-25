@@ -8,6 +8,8 @@
     ./rofi
     ./screenshot
     ./startup
+    ./timer
+    ./updates
     ./sounds
   ];
 }

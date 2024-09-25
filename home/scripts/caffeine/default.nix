@@ -4,7 +4,7 @@
   '';
 
   caffeine-status-icon = pkgs.writeShellScriptBin "caffeine-status-icon" ''
-    [[ $(pidof "hypridle") ]] && echo "󰾪" || echo "󰅶"
+    [[ $(pidof "hypridle") ]] && echo '{"text": "'"<span>󰾪</span>"'"}' || echo '{"text": "'"<span>󰅶</span>"'", "class": "active"}'
   '';
 
   caffeine = pkgs.writeShellScriptBin "caffeine" ''

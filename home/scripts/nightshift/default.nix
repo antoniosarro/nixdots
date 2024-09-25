@@ -32,9 +32,9 @@
 
   night-shift-status-icon = pkgs.writeShellScriptBin "night-shift-status-icon" ''
     if [[ $(pgrep wlsunset) ]]; then
-      echo "󰖔"
+      echo '{"text": "'"<span>󰖔</span>"'", "class": "active"}'
     else
-      echo "󰖕"
+      echo '{"text": "'"<span>󰖕</span>"'"}'
     fi
   '';
 in {

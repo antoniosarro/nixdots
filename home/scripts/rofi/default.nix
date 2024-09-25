@@ -4,11 +4,7 @@
   ...
 }: let
   appmenu = pkgs.writeShellScriptBin "appmenu" ''
-    if pgrep rofi; then
-      pkill rofi
-    else
-      rofi -show drun -theme ${config.var.homeDirectory}/.config/rofi/launcher.rasi
-    fi
+    rofi -show drun -theme ${config.var.homeDirectory}/.config/rofi/launcher.rasi
   '';
   powermenu = pkgs.writeShellScriptBin "powermenu" ''
     # Uptime
@@ -43,7 +39,7 @@
       rofi -dmenu \
         -p "Uptime: $uptime" \
         -mesg "Uptime: $uptime" \
-        -theme "~/.config/rofi/powermenu.rasi"
+        -theme "${config.var.homeDirectory}/.config/rofi/powermenu.rasi"
     }
 
     # Pass variables to rofi dmenu

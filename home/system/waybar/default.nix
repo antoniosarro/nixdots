@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   services = {
@@ -16,7 +17,7 @@
         spacing = 0;
         height = 30;
 
-        modules-left = ["custom/logo"];
+        modules-left = ["custom/logo" "custom/timer"];
         modules-center = ["hyprland/workspaces"];
         modules-right =
           if config.var.hostname == "laptop"
@@ -24,7 +25,7 @@
             "tray"
             "backlight"
             "pulseaudio"
-            "custom/caffeine"
+            # "custom/caffeine"
             "custom/night-shift"
             "battery"
             "clock"
@@ -32,8 +33,9 @@
           else [
             "tray"
             "pulseaudio"
-            "custom/caffeine"
+            # "custom/caffeine"
             "custom/night-shift"
+            "custom/nix-updates"
             "clock"
           ];
 
@@ -41,6 +43,16 @@
           format = "  ";
           tooltip = false;
           on-click = "appmenu";
+        };
+
+        "custom/timer" = {
+          "tooltip" = true;
+          "return-type" = "json";
+          "interval" = 1;
+          "exec" = "timer check";
+          "on-click" = "timer minute_dialog";
+          "on-click-right" = "timer datetime_dialog";
+          "on-click-middle" = "timer stop";
         };
 
         "hyprland/workspaces" = {
@@ -91,20 +103,35 @@
           "scroll-step" = 1;
         };
 
-        "custom/caffeine" = {
-          format = "{}";
-          max-length = 5;
-          interval = 10;
-          exec = "caffeine-status-icon";
-          "on-click" = "caffeine";
-        };
+        # "custom/caffeine" = {
+        #   format = "{}";
+        #   "return-type" = "json";
+        #   max-length = 5;
+        #   interval = 10;
+        #   exec = "caffeine-status-icon";
+        #   "on-click" = "caffeine";
+        # };
 
         "custom/night-shift" = {
           format = "{}";
+          "return-type" = "json";
           max-length = 5;
           interval = 10;
           exec = "night-shift-status-icon";
           "on-click" = "night-shift";
+        };
+
+        "custom/nix-updates" = {
+          "exec" = "update-check";
+          "on-click" = "update-check && ${pkgs.libnotify}/bin/notify-send 'The system has been updated'";
+          "interval" = 3600;
+          "tooltip" = true;
+          "return-type" = "json";
+          "format" = "{}  {icon}";
+          "format-icons" = {
+            "has-updates" = "";
+            "updated" = "";
+          };
         };
 
         battery = {
@@ -223,7 +250,9 @@
       #memory,
       #custom-caffeine,
       #custom-logo,
+      #custom-timer,
       #custom-night-shift,
+      #custom-nix-updates,
       #battery,
       #backlight,
       #pulseaudio,
@@ -249,6 +278,12 @@
         padding: 2px 6px;
       }
 
+      #custom-caffeine.active,
+      #custom-night-shift.active,
+      #custom-nix-updates.active,
+      #custom-timer.active {
+       color: #${config.var.theme.colors.accent};
+      }
 
       #battery.warning,
       #battery.critical,

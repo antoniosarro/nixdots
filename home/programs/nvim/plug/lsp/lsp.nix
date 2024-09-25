@@ -31,6 +31,18 @@
           yamlls = {
             enable = true;
           };
+          bashls = {
+            enable = true;
+          };
+          svelte = {
+            enable = true;
+          };
+          cssls = {
+            enable = true;
+          };
+          tsserver = {
+            enable = true;
+          };
         };
         keymaps = {
           silent = true;

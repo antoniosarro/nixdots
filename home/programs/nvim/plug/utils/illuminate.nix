@@ -1,0 +1,12 @@
+{
+  programs.nixvim.plugins.illuminate = {
+    enable = true;
+    underCursor = false;
+    filetypesDenylist = [
+      "Outline"
+      "TelescopePrompt"
+      "alpha"
+      "reason"
+    ];
+  };
+}

@@ -29,13 +29,9 @@
         gtk-application-prefer-dark-theme=1
       '';
     };
-
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
   };
+
+  home.sessionVariables.GTK_THEME = FlatColor:dark;
 
   home.pointerCursor = {
     gtk.enable = true;
