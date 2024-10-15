@@ -151,6 +151,7 @@
 
           # Application shortcuts
           "$mainMod, T, exec, ${pkgs.kitty}/bin/kitty" # open terminal
+          "$mainMod, N, exec, ${pkgs.vscodium}/bin/codium ~/.config/nixdots" # open config with codium
 
           # Rofi launcher controls
           "$mainMod, A, exec, appmenu" # open desktop app launcher
