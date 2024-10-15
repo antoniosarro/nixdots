@@ -5,8 +5,8 @@
 }: {
   qt = {
     enable = true;
-    platformTheme.name = "gtk2";
-    style.name = "gtk2";
+    platformTheme.name = "qtct";
+    style.name = "kvantum";
   };
 
   gtk = {

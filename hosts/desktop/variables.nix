@@ -19,7 +19,7 @@
     };
 
     autoUpgrade = false;
-    autoGarbageCollector = false;
+    autoGarbageCollector = true;
 
     sops = true;
 

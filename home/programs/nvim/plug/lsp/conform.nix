@@ -11,43 +11,36 @@
       formatters_by_ft = {
         html = [
           [
-            "prettierd"
             "prettier"
           ]
         ];
         css = [
           [
-            "prettierd"
             "prettier"
           ]
         ];
         scss = [
           [
-            "prettierd"
             "prettier"
           ]
         ];
         javascript = [
           [
-            "prettierd"
             "prettier"
           ]
         ];
         javascriptreact = [
           [
-            "prettierd"
             "prettier"
           ]
         ];
         typescript = [
           [
-            "prettierd"
             "prettier"
           ]
         ];
         typescriptreact = [
           [
-            "prettierd"
             "prettier"
           ]
         ];
@@ -56,7 +49,6 @@
         nix = ["alejandra"];
         markdown = [
           [
-            "prettierd"
             "prettier"
           ]
         ];
@@ -67,8 +59,8 @@
         go = ["goimports" "gofmt"];
         rust = ["rustfmt"];
         svelte = [
-          "prettierd"
           "prettier"
+          "rustywind"
         ];
         shellscript = ["shellcheck" "shfmt"];
       };

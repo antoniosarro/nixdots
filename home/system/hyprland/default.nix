@@ -82,7 +82,7 @@
         gaps_out = 5;
         border_size = 2;
         "col.active_border" = "rgba(${config.var.theme.colors.accent}ff)";
-        "col.inactive_border" = "rgba(00000055)";
+        "col.inactive_border" = "rgba(95450D55)";
         layout = "dwindle";
         resize_on_border = true;
       };

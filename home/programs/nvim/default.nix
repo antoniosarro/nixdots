@@ -39,6 +39,7 @@
     ./plug/ui/nvim-notify.nix
     ./plug/ui/presence.nix
     ./plug/ui/telescope.nix
+    ./plug/ui/web-devicons.nix
 
     ./plug/utils/colorizer.nix
     ./plug/utils/comment-box.nix

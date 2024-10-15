@@ -2,6 +2,11 @@
   update-check = pkgs.writeShellScriptBin "update-check" ''
     set -euo pipefail
 
+    cleanup() {
+      rm -r /tmp/tmp.nix-updateinfo.*
+    }
+    trap cleanup EXIT
+
     tempdir=$(mktemp -d /tmp/tmp.nix-updateinfo.XXX)
     git clone --reference ~/.config/nixdots ~/.config/nixdots "$tempdir"
     cd "$tempdir"

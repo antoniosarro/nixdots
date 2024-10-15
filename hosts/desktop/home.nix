@@ -51,6 +51,7 @@
       mpv
       vscodium
       protonmail-desktop
+      libreoffice
 
       # socials
       _64gram

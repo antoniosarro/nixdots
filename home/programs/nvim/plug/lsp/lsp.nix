@@ -40,7 +40,10 @@
           cssls = {
             enable = true;
           };
-          tsserver = {
+          ts-ls = {
+            enable = true;
+          };
+          tailwindcss = {
             enable = true;
           };
         };
