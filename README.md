@@ -5,7 +5,7 @@
 [//]: # (Version: v1.0.0)
 
 <div align="center">
-    <img src="https://raw.githubusercontent.com/anotherhadi/nixy/main/docs/src/logo.png" width="100px" />
+    <img src="https://raw.githubusercontent.com/antoniosarro/nixdots/main/.github/assets/logo.png" width="100px" />
 </div>
 
 <br>
