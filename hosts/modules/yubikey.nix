@@ -14,7 +14,7 @@
 
   services = {
     pcscd.enable = true;
-    uded.packages = [pkgs.yubikey-personalization];
+    udev.packages = [pkgs.yubikey-personalization];
     yubikey-agent.enable = true;
   };
 
