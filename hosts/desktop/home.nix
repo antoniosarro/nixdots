@@ -56,7 +56,7 @@
       dbeaver-bin
 
       # socials
-      _64gram
+      telegram-desktop
       freetube
       teamspeak_client
       streamlink
