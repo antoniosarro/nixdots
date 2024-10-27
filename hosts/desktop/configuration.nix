@@ -26,6 +26,7 @@
     ../modules/utils.nix
     ../modules/virtualisation
     ../modules/xdg.nix
+    ../modules/yubikey.nix
     ../modules/zsh.nix
 
     # hardware
