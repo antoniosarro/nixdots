@@ -48,21 +48,26 @@
       freecad
       gnome-sound-recorder
       obsidian
+      obs-studio
       mpv
       vscodium
       protonmail-desktop
       libreoffice
+      dbeaver-bin
 
       # socials
       _64gram
       freetube
       teamspeak_client
       streamlink
+      element-desktop
 
       # utils
       android-file-transfer
       amdgpu_top
+      cameractrls-gtk4
       cpupower-gui
+      gawk
       localsend
       pandoc
       unzip

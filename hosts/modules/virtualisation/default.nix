@@ -2,7 +2,74 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  hugepage_handler = pkgs.writeShellScript "hugepage_handler" ''
+    xml_file="/var/lib/libvirt/qemu/$1.xml"
+
+    function extract_number() {
+      local xml_file=$1
+      local number=$(grep -oPm1 "(?<=<memory unit='KiB'>)[^<]+" $xml_file)
+      echo $((number/1024))
+    }
+
+    function prepare() {
+      # Calculate number of hugepages to allocate from memory (in MB)
+      HUGEPAGES="$(($1/$(($(grep Hugepagesize /proc/meminfo | ${pkgs.gawk}/bin/gawk '{print $2}')/1024))))"
+
+      echo "Allocating hugepages..."
+      echo $HUGEPAGES > /proc/sys/vm/nr_hugepages
+      ALLOC_PAGES=$(cat /proc/sys/vm/nr_hugepages)
+
+      TRIES=0
+      while (( $ALLOC_PAGES != $HUGEPAGES && $TRIES < 1000 ))
+      do
+          echo 1 > /proc/sys/vm/compact_memory
+          ## defrag ram
+          echo $HUGEPAGES > /proc/sys/vm/nr_hugepages
+          ALLOC_PAGES=$(cat /proc/sys/vm/nr_hugepages)
+          echo "Successfully allocated $ALLOC_PAGES / $HUGEPAGES"
+          let TRIES+=1
+      done
+
+      if [ "$ALLOC_PAGES" -ne "$HUGEPAGES" ]
+      then
+          echo "Not able to allocate all hugepages. Reverting..."
+          echo 0 > /proc/sys/vm/nr_hugepages
+          exit 1
+      fi
+    }
+
+    function release() {
+      echo 0 > /proc/sys/vm/nr_hugepages
+    }
+
+    case $2 in
+      prepare)
+          number=$(extract_number $xml_file)
+          prepare $number
+          ;;
+      release)
+          release
+          ;;
+    esac
+  '';
+  cpu_pinning = pkgs.writeShellScript "cpu_pinning" ''
+    if [[ $1 == "win10" ]]; then
+      if [[ $2 == "started" ]]; then
+        # CPU isolation
+        systemctl set-property --runtime -- user.slice AllowedCPUs=0,1,6,7
+        systemctl set-property --runtime -- system.slice AllowedCPUs=0,1,6,7
+        systemctl set-property --runtime -- init.scope AllowedCPUs=0,1,6,7
+      fi
+      if [[ $2 == "stopped" ]]; then
+        # Free all CPUs
+        systemctl set-property --runtime -- user.slice AllowedCPUs=0-11
+        systemctl set-property --runtime -- system.slice AllowedCPUs=0-11
+        systemctl set-property --runtime -- init.scope AllowedCPUs=0-11
+      fi
+    fi
+  '';
+in {
   imports = [
     ./modules/vfio.nix
     ./modules/libvirt.nix
@@ -41,6 +108,22 @@
           WATCHTOWER_SCHEDULE = "0 0 3 * * *";
         };
       };
+      containers."portainer" = {
+        autoStart = true;
+        image = "docker.io/portainer/portainer-ce";
+        volumes = ["/var/run/docker.sock:/var/run/docker.sock" "portainer_data:/data"];
+        ports = ["8000:8000" "9443:9443"];
+      };
+      containers."postgres" = {
+        autoStart = true;
+        image = "docker.io/postgres";
+        volumes = ["postgres_data:/var/lib/postgresql/data"];
+        ports = ["5432:5432"];
+        environment = {
+          TZ = "Europe/Rome";
+          POSTGRES_PASSWORD = "root";
+        };
+      };
     };
 
     # libvirtd
@@ -56,6 +139,10 @@
           enable = true;
           packages = [pkgs.OVMFFull.fd];
         };
+      };
+      hooks.qemu = {
+        hugepages_handler = "${hugepage_handler}";
+        cpu_pinning = "${cpu_pinning}";
       };
       clearEmulationCapabilities = false;
       deviceACL = [

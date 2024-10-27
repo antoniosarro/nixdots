@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   update-check = pkgs.writeShellScriptBin "update-check" ''
-    set -euo pipefail
+    set -eo pipefail
 
     cleanup() {
       rm -r /tmp/tmp.nix-updateinfo.*
@@ -18,7 +18,7 @@
     if [[ "$parameter" == "pretty" ]]; then
       nvd diff /run/current-system ./result
     else
-      updates="$(nvd diff /run/current-system ./result | grep -c '\[U')"  
+      updates="$(nvd diff /run/current-system ./result | grep -c '\[U')"
       if [ "$updates" != 0 ]; then
           alt="has-updates"
           tooltip=$(nvd diff /run/current-system ./result | grep '\[U' | awk '{ for (i=3; i<NF; i++) printf $i " "; if (NF >= 3) print $NF; }' ORS='\\n')

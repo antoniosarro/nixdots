@@ -37,7 +37,7 @@
       ls = "eza --icons=always --no-quotes";
       tree = "eza --icons=always --tree --no-quotes";
       sl = "ls";
-      open = "${pkgs.xdg_utils}/bin/xdg-open";
+      open = "${pkgs.xdg-utils}/bin/xdg-open";
       icat = "${pkgs.kitty}/bin/kitty +kitten icat";
       wireguard-import = "nmcli connection import type wireguard file";
 

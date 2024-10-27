@@ -10,10 +10,10 @@
           html = {
             enable = true;
           };
-          lua-ls = {
+          lua_ls = {
             enable = true;
           };
-          nil-ls = {
+          nil_ls = {
             enable = true;
           };
           nixd = {
@@ -40,7 +40,7 @@
           cssls = {
             enable = true;
           };
-          ts-ls = {
+          ts_ls = {
             enable = true;
           };
           tailwindcss = {

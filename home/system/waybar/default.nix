@@ -35,7 +35,7 @@
             "pulseaudio"
             # "custom/caffeine"
             "custom/night-shift"
-            "custom/nix-updates"
+            # "custom/nix-updates"
             "clock"
           ];
 
