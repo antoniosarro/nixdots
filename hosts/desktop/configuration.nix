@@ -18,6 +18,7 @@
     ../modules/power-profile.nix
     ../modules/printer.nix
     ../modules/swap.nix
+    ../modules/syncthing.nix
     ../modules/systemd-boot.nix
     ../modules/timezone.nix
     ../modules/tuigreet.nix

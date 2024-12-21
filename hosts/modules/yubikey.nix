@@ -25,7 +25,7 @@
         enable = true;
         settings = {
           cue = false;
-          authFile = "${config.homeDirectory}/.config/Yubico/u2f_keys";
+          authFile = "${config.var.homeDirectory}/.config/Yubico/u2f_keys";
         };
       };
       services = {

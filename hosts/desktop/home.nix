@@ -14,7 +14,6 @@
     ../../home/programs/firefox
     ../../home/programs/git
     ../../home/programs/kitty
-    ../../home/programs/nextcloud
     ../../home/programs/nvim
     ../../home/programs/shell
     ../../home/programs/spicetify

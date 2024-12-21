@@ -11,7 +11,6 @@
     ../../home/programs/fetch
     ../../home/programs/git
     ../../home/programs/kitty
-    ../../home/programs/nextcloud
     ../../home/programs/shell
     ../../home/programs/spicetify
     ../../home/programs/vesktop

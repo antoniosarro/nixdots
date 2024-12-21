@@ -3,6 +3,16 @@
   pkgs,
   ...
 }: let
+  qemu_9_1_0 =
+    import (pkgs.fetchFromGitHub {
+      owner = "NixOS";
+      repo = "nixpkgs";
+      rev = "940d545355d5e79859502334f2fe269c3996046b";
+      sha256 = "1klhr7mrfhrzcqfzngk268jspikbivkxg96x2wncjv1ik3zb8i75";
+    }) {
+      inherit (pkgs) system;
+    };
+
   hugepage_handler = pkgs.writeShellScript "hugepage_handler" ''
     xml_file="/var/lib/libvirt/qemu/$1.xml"
 
@@ -54,7 +64,7 @@
     esac
   '';
   cpu_pinning = pkgs.writeShellScript "cpu_pinning" ''
-    if [[ $1 == "win10" ]]; then
+    if [[ $1 == "win11" ]]; then
       if [[ $2 == "started" ]]; then
         # CPU isolation
         systemctl set-property --runtime -- user.slice AllowedCPUs=0,1,6,7
@@ -132,12 +142,12 @@ in {
       onBoot = "ignore";
       onShutdown = "shutdown";
       qemu = {
-        package = pkgs.qemu_kvm;
+        package = qemu_9_1_0.qemu_kvm;
         runAsRoot = false;
         swtpm.enable = true;
         ovmf = {
           enable = true;
-          packages = [pkgs.OVMFFull.fd];
+          packages = [qemu_9_1_0.OVMFFull.fd];
         };
       };
       hooks.qemu = {
