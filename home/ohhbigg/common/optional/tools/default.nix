@@ -4,6 +4,7 @@
       (pkgs)
       # Development
       vscodium-fhs
+      sqlitebrowser
       # Device Imaging
       # Productivity
       qbittorrent

@@ -31,6 +31,7 @@
       "hosts/common/core"
 
       # Optional Configs
+      "hosts/common/optional/amd.nix"
       "hosts/common/optional/services/greetd.nix" # display manager
       "hosts/common/optional/services/printing.nix" # CUPS
       "hosts/common/optional/audio.nix" # pipewire and cli controls
@@ -38,6 +39,7 @@
       "hosts/common/optional/gaming.nix" # steam, gamescope, gamemode, and related hardware
       "hosts/common/optional/gpu.nix"
       "hosts/common/optional/hyprland.nix" # window manager
+      "hosts/common/optional/kdeconnect.nix"
       "hosts/common/optional/obsidian.nix" # Notes
       "hosts/common/optional/plymouth.nix" # Animated boot screen
       "hosts/common/optional/scanning.nix" # SANE and simple-scan
