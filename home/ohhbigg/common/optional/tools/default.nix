@@ -5,6 +5,8 @@
       # Development
       vscodium-fhs
       sqlitebrowser
+      vscode
+      rustup
       # Device Imaging
       # Productivity
       qbittorrent
@@ -24,6 +26,7 @@
       localsend
       rpi-imager
       nvd
+      orca-slicer
       ;
   };
 }

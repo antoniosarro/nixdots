@@ -12,7 +12,6 @@
       slack
       teams-for-linux
       telegram-desktop
-      teamspeak6-client
       ;
   };
 }

@@ -38,6 +38,7 @@
       "hosts/common/optional/bluetooth.nix" # bluetooth service
       "hosts/common/optional/gaming.nix" # steam, gamescope, gamemode, and related hardware
       "hosts/common/optional/gpu.nix"
+      "hosts/common/optional/graphene.nix"
       "hosts/common/optional/hyprland.nix" # window manager
       "hosts/common/optional/kdeconnect.nix"
       "hosts/common/optional/obsidian.nix" # Notes
