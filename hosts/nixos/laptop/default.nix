@@ -23,7 +23,7 @@
     # ============================
     # Nvidia
     # ============================
-    inputs.hardware.nixosModules.common-gpu-nvidia
+    # inputs.hardware.nixosModules.common-gpu-nvidia
 
     # ============================
     # Disk Layout
@@ -57,11 +57,11 @@
   # ============================
   # Nvidia
   # ============================
-  hardware.nvidia.open = false;
-  hardware.nvidia.prime = {
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
-  };
+  # hardware.nvidia.open = false;
+  # hardware.nvidia.prime = {
+  #   intelBusId = "PCI:0:2:0";
+  #   nvidiaBusId = "PCI:1:0:0";
+  # };
 
   specialisation."integrated-gpu".configuration = {
     imports = lib.flatten [
