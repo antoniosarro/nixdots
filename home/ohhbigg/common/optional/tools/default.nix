@@ -6,6 +6,7 @@
       vscodium-fhs
       sqlitebrowser
       vscode
+      insomnia
       rustup
       # Device Imaging
       # Productivity
