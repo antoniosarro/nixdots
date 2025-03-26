@@ -1,11 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./vesktop.nix
   ];
 
   home.packages = builtins.attrValues {
-    inherit
-      (pkgs)
+    inherit (pkgs)
       element-desktop
       protonmail-desktop
       signal-desktop

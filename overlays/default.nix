@@ -1,15 +1,18 @@
 #
 # This file defines overlays/custom modifications to upstream packages
 #
-{inputs, ...}: let
+{ inputs, ... }:
+let
   # Adds my custom packages
   # FIXME: Add per-system packages
-  additions = final: prev: (prev.lib.packagesFromDirectoryRecursive {
-    callPackage = prev.lib.callPackageWith final;
-    directory = ../pkgs/common;
-  });
+  additions =
+    final: prev:
+    (prev.lib.packagesFromDirectoryRecursive {
+      callPackage = prev.lib.callPackageWith final;
+      directory = ../pkgs/common;
+    });
 
-  linuxModifications = final: prev: prev.lib.mkIf final.stdenv.isLinux {};
+  linuxModifications = final: prev: prev.lib.mkIf final.stdenv.isLinux { };
 
   modifications = final: prev: {
     # example = prev.example.overrideAttrs (oldAttrs: let ... in {
@@ -40,8 +43,10 @@
       #     ];
     };
   };
-in {
-  default = final: prev:
+in
+{
+  default =
+    final: prev:
     (additions final prev)
     // (modifications final prev)
     // (linuxModifications final prev)

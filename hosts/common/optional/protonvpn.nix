@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
-  # general packages related to wayland
   environment.systemPackages = [
+    pkgs.protonvpn-cli
+    pkgs.protonvpn-gui
   ];
 }

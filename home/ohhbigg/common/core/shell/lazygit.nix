@@ -4,9 +4,12 @@
     settings = {
       gui.theme = {
         ligthTheme = false;
-        activeBorderColor = ["magenta" "bold"];
-        inactiveBorderColor = ["black"];
-        selectedLineBgColor = ["default"];
+        activeBorderColor = [
+          "magenta"
+          "bold"
+        ];
+        inactiveBorderColor = [ "black" ];
+        selectedLineBgColor = [ "default" ];
       };
     };
   };

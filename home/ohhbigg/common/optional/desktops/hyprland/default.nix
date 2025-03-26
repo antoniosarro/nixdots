@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ./binds.nix # Hyprland binds
 
@@ -12,8 +13,7 @@
   ];
 
   home.packages = builtins.attrValues {
-    inherit
-      (pkgs)
+    inherit (pkgs)
       grimblast # screenshot
       brightnessctl # brightness
       wl-clipboard # system clipboard
@@ -24,7 +24,7 @@
     enable = true;
     systemd = {
       enable = true;
-      variables = ["--all"];
+      variables = [ "--all" ];
       extraCommands = lib.mkBefore [
         "systemctl --user stop graphical-session.target"
         "systemctl --user start hyprland-session.target"
@@ -54,15 +54,15 @@
       # Monitors
       # ============================
       monitor = (
-        map
-        (
-          m: "${m.name},${
-            if m.enabled
-            then "${toString m.width}x${toString m.height}@${toString m.refreshRate},${toString m.x}x${toString m.y},1,transform,${toString m.transform},vrr,${toString m.vrr}"
-            else "disable"
+        map (
+          m:
+          "${m.name},${
+            if m.enabled then
+              "${toString m.width}x${toString m.height}@${toString m.refreshRate},${toString m.x}x${toString m.y},1,transform,${toString m.transform},vrr,${toString m.vrr}"
+            else
+              "disable"
           }"
-        )
-        (config.monitors)
+        ) (config.monitors)
       );
 
       # ============================
@@ -129,7 +129,7 @@
       # ============================
       # Layer Rules
       # ============================
-      layer = {};
+      layer = { };
 
       # ============================
       # Window Rules

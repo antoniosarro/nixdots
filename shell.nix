@@ -1,21 +1,18 @@
 # This shell.nix is used for bootstrapping a new NixOS system.
-# It provides the minimal necessary tools to get started:
-# - nix with flakes support
-# - home-manager for user configuration
-# - sops/age for secret management
-# - git and just for basic development needs
 {
-  pkgs ? let
-    lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
-    nixpkgs = fetchTarball {
-      url = "https://github.com/nixos/nixpkgs/archive/${lock.rev}.tar.gz";
-      sha256 = lock.narHash;
-    };
-  in
-    import nixpkgs {overlays = [];},
+  pkgs ?
+    let
+      lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
+      nixpkgs = fetchTarball {
+        url = "https://github.com/nixos/nixpkgs/archive/${lock.rev}.tar.gz";
+        sha256 = lock.narHash;
+      };
+    in
+    import nixpkgs { overlays = [ ]; },
   checks,
   ...
-}: {
+}:
+{
   default = pkgs.mkShell {
     NIX_CONFIG = "extra-experimental-features = nix-command flakes";
 
@@ -23,15 +20,20 @@
     buildInputs = checks.pre-commit-check.enabledPackages;
 
     nativeBuildInputs = builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
+
         nix
         home-manager
+        nh
         git
         just
+        pre-commit
+        deadnix
+        sops
+        yq-go
+        bats
         age
         ssh-to-age
-        sops
         ;
     };
   };

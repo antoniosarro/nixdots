@@ -1,3 +1,4 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [prismlauncher];
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [ prismlauncher ];
 }

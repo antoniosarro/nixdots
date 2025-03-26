@@ -1,7 +1,7 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = builtins.attrValues {
-    inherit
-      (pkgs)
+    inherit (pkgs)
       # Development
       vscodium-fhs
       sqlitebrowser
@@ -18,7 +18,6 @@
       # Security
       bitwarden
       # Media
-      obs-studio
       freetube
       # VM
       remmina
@@ -27,6 +26,7 @@
       localsend
       rpi-imager
       nvd
+      # orca-slicer
       orca-slicer
       ;
   };

@@ -3,13 +3,15 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.programs.copyq;
   configDir = "${config.xdg.configHome}/copyq";
-in {
+in
+{
   options.programs.copyq = {
     enable = lib.mkEnableOption "copyq";
-    package = lib.mkPackageOption pkgs "copyq" {};
+    package = lib.mkPackageOption pkgs "copyq" { };
 
     settings = {
       Options = {
@@ -18,9 +20,9 @@ in {
     };
   };
   config = lib.mkIf cfg.enable {
-    home.packages = [cfg.package];
+    home.packages = [ cfg.package ];
     home.file = {
-      "${configDir}/copyq.conf" = lib.mkIf (cfg.settings != {}) lib.generators.toINI {} cfg.settings;
+      "${configDir}/copyq.conf" = lib.mkIf (cfg.settings != { }) lib.generators.toINI { } cfg.settings;
     };
   };
 }

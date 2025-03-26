@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   hardware.xone.enable = true; # xbox controller
 
   programs = {
@@ -9,32 +10,31 @@
         package = pkgs.protontricks;
       };
       package = pkgs.steam.override {
-        extraPkgs = pkgs: (builtins.attrValues {
-          inherit
-            (pkgs.xorg)
-            libXcursor
-            libXi
-            libXinerama
-            libXScrnSaver
-            ;
+        extraPkgs =
+          pkgs:
+          (builtins.attrValues {
+            inherit (pkgs.xorg)
+              libXcursor
+              libXi
+              libXinerama
+              libXScrnSaver
+              ;
 
-          inherit
-            (pkgs.stdenv.cc.cc)
-            lib
-            ;
+            inherit (pkgs.stdenv.cc.cc)
+              lib
+              ;
 
-          inherit
-            (pkgs)
-            libpng
-            libpulseaudio
-            libvorbis
-            libkrb5
-            keyutils
-            gperftools
-            ;
-        });
+            inherit (pkgs)
+              libpng
+              libpulseaudio
+              libvorbis
+              libkrb5
+              keyutils
+              gperftools
+              ;
+          });
       };
-      extraCompatPackages = [pkgs.unstable.proton-ge-bin];
+      extraCompatPackages = [ pkgs.unstable.proton-ge-bin ];
     };
 
     gamescope = {

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -15,5 +16,6 @@
   environment.systemPackages = with pkgs; [
     pwvucontrol
     playerctl
+    easyeffects
   ];
 }

@@ -2,13 +2,14 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   home.packages = builtins.attrValues {
     inherit (pkgs) libnotify;
   };
 
   services.dunst = {
-    enable = true;
+    enable = false;
     iconTheme = {
       name = "Papirus";
       package = pkgs.papirus-icon-theme;

@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   virtualisation = {
     docker = {
       enable = true;
@@ -24,7 +25,7 @@
       containers."watchtower" = {
         autoStart = true;
         image = "docker.io/containrrr/watchtower";
-        volumes = ["/var/run/docker.sock:/var/run/docker.sock"];
+        volumes = [ "/var/run/docker.sock:/var/run/docker.sock" ];
         environment = {
           TZ = "Europe/Rome";
           WATCHTOWER_CLEANUP = "true";
@@ -36,14 +37,20 @@
       containers."portainer" = {
         autoStart = true;
         image = "docker.io/portainer/portainer-ce";
-        volumes = ["/var/run/docker.sock:/var/run/docker.sock" "portainer_data:/data"];
-        ports = ["8000:8000" "9443:9443"];
+        volumes = [
+          "/var/run/docker.sock:/var/run/docker.sock"
+          "portainer_data:/data"
+        ];
+        ports = [
+          "8000:8000"
+          "9443:9443"
+        ];
       };
       containers."postgres" = {
         autoStart = true;
         image = "docker.io/postgres";
-        volumes = ["postgres_data:/var/lib/postgresql/data"];
-        ports = ["5432:5432"];
+        volumes = [ "postgres_data:/var/lib/postgresql/data" ];
+        ports = [ "5432:5432" ];
         environment = {
           TZ = "Europe/Rome";
           POSTGRES_PASSWORD = "root";
@@ -69,6 +76,6 @@
     pkgs.qemu
   ];
   users.users.${config.hostSpec.username} = {
-    extraGroups = ["libvirtd"];
+    extraGroups = [ "libvirtd" ];
   };
 }

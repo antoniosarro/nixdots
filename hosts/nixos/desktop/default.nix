@@ -10,7 +10,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = lib.flatten [
     # ============================
     # Hardware
@@ -43,9 +44,12 @@
       "hosts/common/optional/kdeconnect.nix"
       "hosts/common/optional/obsidian.nix" # Notes
       "hosts/common/optional/plymouth.nix" # Animated boot screen
+      "hosts/common/optional/protonvpn.nix" # vpn
       "hosts/common/optional/scanning.nix" # SANE and simple-scan
       "hosts/common/optional/thunar.nix" # file manager
-      "hosts/common/optional/vlc.nix" # media player
+      "hosts/common/optional/mpv.nix" # media player
+      "hosts/common/optional/nix-ld.nix"
+      "hosts/common/optional/obs.nix"
       "hosts/common/optional/wayland.nix" # wayland components and pkgs not available in home-manager
       "hosts/common/optional/virtualisation.nix" # Qemu & Docker
       "hosts/common/optional/flatpak.nix"
@@ -78,7 +82,7 @@
     systemd.enable = true;
   };
 
-  boot.kernelParams = ["amdgpu.ppfeaturemask=0xfff7ffff"];
+  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xfff7ffff" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   system.stateVersion = "24.11";

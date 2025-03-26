@@ -1,4 +1,8 @@
-{config, ...}: {
+{ config, ... }:
+{
   programs.adb.enable = true;
-  users.users.${config.hostSpec.username}.extraGroups = ["adbusers" "kvm"];
+  users.users.${config.hostSpec.username}.extraGroups = [
+    "adbusers"
+    "kvm"
+  ];
 }

@@ -45,96 +45,111 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
     # Theming
+    hyprpanel = {
+      url = "github:jas-singhfsu/hyprpanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     bibata-modern-amber-hyprcursor.url = "github:antoniosarro/bibata-modern-amber-hyprcursor";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
   };
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    inherit (nixpkgs) lib;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      inherit (nixpkgs) lib;
 
-    #
-    # ========= Architectures =========
-    #
-    architectures = nixpkgs.lib.genAttrs [
-      "x86_64-linux"
-      #"aarch64-darwin"
-    ];
-    #
-    # ========= Host Config Functions =========
-    #
-    mkHost = host: {
-      ${host} = let
-        func = lib.nixosSystem;
-        systemFunc = func;
-      in
-        systemFunc {
-          specialArgs = {
-            inherit
-              inputs
-              outputs
-              ;
-            lib = nixpkgs.lib.extend (self: super: {custom = import ./lib {inherit (nixpkgs) lib;};});
+      #
+      # ========= Architectures =========
+      #
+      architectures = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+      ];
+      #
+      # ========= Host Config Functions =========
+      #
+      mkHost = host: {
+        ${host} =
+          let
+            func = lib.nixosSystem;
+            systemFunc = func;
+          in
+          systemFunc {
+            specialArgs = {
+              inherit
+                inputs
+                outputs
+                ;
+              lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+            };
+            modules = [
+              ./hosts/nixos/${host}
+              { nixpkgs.overlays = [ inputs.hyprpanel.overlay ]; }
+            ];
           };
-          modules = [./hosts/nixos/${host}];
-        };
-    };
-    mkHostConfigs = hosts: lib.foldl (acc: set: acc // set) {} (lib.map (host: mkHost host) hosts);
-    readHosts = folder: lib.attrNames (builtins.readDir ./hosts/${folder});
-  in {
-    #
-    # ========= Overlays =========
-    #
-    # Custom modifications/overrides to upstream packages.
-    overlays = import ./overlays {inherit inputs;};
+      };
+      mkHostConfigs = hosts: lib.foldl (acc: set: acc // set) { } (lib.map (host: mkHost host) hosts);
+      readHosts = folder: lib.attrNames (builtins.readDir ./hosts/${folder});
+    in
+    {
+      #
+      # ========= Overlays =========
+      #
+      # Custom modifications/overrides to upstream packages.
+      overlays = import ./overlays { inherit inputs; };
 
-    #
-    # ========= Host Configurations =========
-    #
-    # `just rebuild` or `nixos-rebuild --flake .#hostname`
-    nixosConfigurations = mkHostConfigs (readHosts "nixos");
+      #
+      # ========= Host Configurations =========
+      #
+      # `just rebuild` or `nixos-rebuild --flake .#hostname`
+      nixosConfigurations = mkHostConfigs (readHosts "nixos");
 
-    #
-    # ========= Packages =========
-    #
-    # Add custom packages to be shared or upstreamed.
-    packages = architectures (
-      system: let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [self.overlays.default];
-        };
-      in
+      #
+      # ========= Packages =========
+      #
+      # Add custom packages to be shared or upstreamed.
+      packages = architectures (
+        system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ self.overlays.default ];
+          };
+        in
         lib.packagesFromDirectoryRecursive {
           callPackage = lib.callPackageWith pkgs;
           directory = ./pkgs/common;
         }
-    );
+      );
 
-    # ========= Formatting and Checks =========
-    #
-    # Nix formatter available through 'nix fmt'.
-    formatter = architectures (system: nixpkgs.legacyPackages.${system}.alejandra);
-    checks = architectures (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-        import ./checks {inherit inputs system pkgs;}
-    );
+      # ========= Formatting and Checks =========
+      #
+      # Nix formatter available through 'nix fmt'.
+      formatter = architectures (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+      checks = architectures (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        import ./checks.nix { inherit inputs system pkgs; }
+      );
 
-    # ========= DevShell =========
-    #
-    # Custom shell for bootstrapping on new hosts, modifying nix-config, and secrets management
-    devShells = architectures (
-      system:
+      # ========= DevShell =========
+      #
+      # Custom shell for bootstrapping on new hosts, modifying nix-config, and secrets management
+      devShells = architectures (
+        system:
         import ./shell.nix {
           pkgs = nixpkgs.legacyPackages.${system};
           checks = self.checks.${system};
         }
-    );
-  };
+      );
+    };
 }

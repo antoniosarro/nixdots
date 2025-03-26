@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   appmenu = pkgs.writeShellScriptBin "appmenu" ''
     rofi -show drun -theme ${config.home.homeDirectory}/.config/rofi/launcher.rasi
   '';
@@ -67,4 +68,10 @@
             ;;
     esac
   '';
-in {home.packages = [appmenu powermenu];}
+in
+{
+  home.packages = [
+    appmenu
+    powermenu
+  ];
+}

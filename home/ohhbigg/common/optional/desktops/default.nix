@@ -1,10 +1,9 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./hyprland
-    ./services/dunst.nix
-    ./waybar.nix
+    ./hyprpanel.nix
     ./rofi.nix
     ./gtk-qt.nix
-    ./gammastep.nix
   ];
 }

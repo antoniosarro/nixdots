@@ -4,9 +4,11 @@
   pkgs,
   hostSpec,
   ...
-}: let
+}:
+let
   platform = "nixos";
-in {
+in
+{
   imports = lib.flatten [
     (map lib.custom.relativeToRoot [
       "modules/common/host-spec.nix"
@@ -43,8 +45,7 @@ in {
   };
 
   home.packages = builtins.attrValues {
-    inherit
-      (pkgs)
+    inherit (pkgs)
       coreutils # basic gnu utils
       dust # disk usage
       jq # JSON pretty printer and manipulator

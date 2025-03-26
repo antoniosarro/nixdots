@@ -2,10 +2,10 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   home.packages = builtins.attrValues {
-    inherit
-      (pkgs)
+    inherit (pkgs)
       vesktop
       ;
   };

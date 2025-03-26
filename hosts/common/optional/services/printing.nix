@@ -1,7 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.printing = {
     enable = true;
-    drivers = [pkgs.epson-escpr];
+    drivers = [ pkgs.epson-escpr ];
   };
 
   # https://discourse.nixos.org/t/cups-cups-filters-and-libppd-security-issues/52780/2

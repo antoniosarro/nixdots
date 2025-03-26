@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   xdg = {
     enable = true;
     userDirs = {
@@ -26,8 +27,7 @@
   };
 
   home.packages = builtins.attrValues {
-    inherit
-      (pkgs)
+    inherit (pkgs)
       xdg-utils # provide cli tools such as `xdg-mime` and `xdg-open`
       xdg-user-dirs
       ;

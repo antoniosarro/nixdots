@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   programs.neovim = {
     enable = true;
   };
@@ -31,6 +32,5 @@
   ];
 
   home.file.".config/nvim".source =
-    config.lib.file.mkOutOfStoreSymlink
-    "${config.home.homeDirectory}/nixdots/home/ohhbigg/common/core/neovim/nvim";
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixdots/home/ohhbigg/common/core/neovim/nvim";
 }

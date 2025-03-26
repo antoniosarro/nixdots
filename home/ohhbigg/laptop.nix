@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   imports = [
     # ============================
     # Hardware Required Configs

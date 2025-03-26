@@ -3,16 +3,18 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   handle = config.hostSpec.handle;
   publicGitEmail = config.hostSpec.email.github;
-in {
+in
+{
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
     userName = handle;
     userEmail = publicGitEmail;
-    aliases = {};
+    aliases = { };
     extraConfig = {
       log.showSignature = "true";
       init.defaultBranch = "main";

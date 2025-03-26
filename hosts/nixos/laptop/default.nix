@@ -10,7 +10,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = lib.flatten [
     # ============================
     # Hardware
@@ -48,7 +49,7 @@
       "hosts/common/optional/plymouth.nix" # Animated boot screen
       "hosts/common/optional/scanning.nix" # SANE and simple-scan
       "hosts/common/optional/thunar.nix" # file manager
-      "hosts/common/optional/vlc.nix" # media player
+      "hosts/common/optional/mpv.nix" # media player
       "hosts/common/optional/wayland.nix" # wayland components and pkgs not available in home-manager
       "hosts/common/optional/virtualisation.nix" # Qemu & Docker
     ])

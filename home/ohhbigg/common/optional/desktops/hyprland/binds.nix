@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   wayland.windowManager.hyprland.settings = {
     # ============================
     # Main Key
@@ -40,10 +41,11 @@
     # ============================
     # One-Click Binds
     # ============================
-    bind = let
-      terminal = config.home.sessionVariables.TERM;
-      editor = config.home.sessionVariables.EDITOR;
-    in
+    bind =
+      let
+        terminal = config.home.sessionVariables.TERM;
+        editor = config.home.sessionVariables.EDITOR;
+      in
       [
         # Power system
         "$mainMod, ESCAPE, exec, powermenu"
@@ -84,13 +86,18 @@
         # Misc
         "SHIFTALT,r,exec,hyprctl reload" # reload the configuration file
       ]
-      ++ (builtins.concatLists (builtins.genList (i: let
-          ws = i + 1;
-        in [
-          "$mainMod, code:1${toString i}, workspace, ${toString ws}"
-          "$mainMod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-          "$mainMod ALT, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
-        ])
-        10));
+      ++ (builtins.concatLists (
+        builtins.genList (
+          i:
+          let
+            ws = i + 1;
+          in
+          [
+            "$mainMod, code:1${toString i}, workspace, ${toString ws}"
+            "$mainMod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+            "$mainMod ALT, code:1${toString i}, movetoworkspacesilent, ${toString ws}"
+          ]
+        ) 10
+      ));
   };
 }

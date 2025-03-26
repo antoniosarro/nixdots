@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   options.hostSpec = {
     username = lib.mkOption {
       type = lib.types.str;
@@ -19,12 +20,12 @@
     };
     # FIXME: Set an assert to make sure this is set if isWork is true
     work = lib.mkOption {
-      default = {};
+      default = { };
       type = lib.types.attrsOf lib.types.anything;
       description = "An attribute set of work-related information if isWork is true";
     };
     networking = lib.mkOption {
-      default = {};
+      default = { };
       type = lib.types.attrsOf lib.types.anything;
       description = "An attribute set of networking information";
     };
@@ -43,12 +44,11 @@
     home = lib.mkOption {
       type = lib.types.str;
       description = "The home directory of the user";
-      default = let
-        user = config.hostSpec.username;
-      in
-        if pkgs.stdenv.isLinux
-        then "/home/${user}"
-        else "/Users/${user}";
+      default =
+        let
+          user = config.hostSpec.username;
+        in
+        if pkgs.stdenv.isLinux then "/home/${user}" else "/Users/${user}";
     };
     # FIXME: This should probably just switch to an impermenance option?
     persistFolder = lib.mkOption {
@@ -105,7 +105,7 @@
       description = "Used to indicate what scaling to use. Floating point number";
     };
     theme = lib.mkOption {
-      default = {};
+      default = { };
       type = lib.types.attrsOf lib.types.anything;
       description = "An attribute set of theme values";
     };

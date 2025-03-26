@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     # a cat clone with syntax highlighting and Git integration
     ./bat.nix
@@ -21,8 +22,7 @@
   ];
 
   home.packages = builtins.attrValues {
-    inherit
-      (pkgs)
+    inherit (pkgs)
       btop # resource monitor
       curl
       wget

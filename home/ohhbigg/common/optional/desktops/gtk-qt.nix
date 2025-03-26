@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   catppuccinAccent = "Blue";
   catppuccinFlavor = "Mocha";
 
@@ -11,7 +12,8 @@
     variant = "${lib.toLower catppuccinFlavor}";
   };
   qtThemeName = "catppuccin-${lib.toLower catppuccinFlavor}-${lib.toLower catppuccinAccent}";
-in {
+in
+{
   home.packages = with pkgs; [
     papirus-folders
     catppuccinKvantum
@@ -22,7 +24,7 @@ in {
     theme = {
       name = "catppuccin-${lib.toLower catppuccinFlavor}-${lib.toLower catppuccinAccent}-standard";
       package = pkgs.catppuccin-gtk.override {
-        accents = ["${lib.toLower catppuccinAccent}"];
+        accents = [ "${lib.toLower catppuccinAccent}" ];
         size = "standard";
         variant = "${lib.toLower catppuccinFlavor}";
       };
@@ -46,7 +48,7 @@ in {
 
   xdg.configFile = {
     "Kvantum/${qtThemeName}".source = "${catppuccinKvantum}/share/Kvantum/${qtThemeName}";
-    "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
+    "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
       General.theme = qtThemeName;
     };
   };

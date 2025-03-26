@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   imports = [
     # ============================
     # Hardware Required Configs
@@ -10,6 +11,7 @@
     # ============================
     common/optional/browsers
     common/optional/desktops
+    common/optional/dev
     common/optional/comms
     common/optional/gaming
     common/optional/media

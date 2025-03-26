@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   homeDir = config.home.homeDirectory;
-in {
+in
+{
   programs.firefox = {
     enable = true;
 
@@ -36,30 +38,30 @@ in {
               };
             };
           in
-            builtins.listToAttrs [
-              # privacy / Security
-              (extension "noscript" "{73a6fe31-595d-460b-a920-fcc0f8843232}")
-              (extension "proton-vpn-firefox-extension" "vpn@proton.ch")
-              (extension "privacy-badger17" "jid1-MnnxcxisBPnSXQ@jetpack")
-              (extension "cookie-autodelete" "CookieAutoDelete@kennydo.com")
-              (extension "clearurls" "{74145f27-f039-47ce-a470-a662b129930a}")
+          builtins.listToAttrs [
+            # privacy / Security
+            (extension "noscript" "{73a6fe31-595d-460b-a920-fcc0f8843232}")
+            (extension "proton-vpn-firefox-extension" "vpn@proton.ch")
+            (extension "privacy-badger17" "jid1-MnnxcxisBPnSXQ@jetpack")
+            (extension "cookie-autodelete" "CookieAutoDelete@kennydo.com")
+            (extension "clearurls" "{74145f27-f039-47ce-a470-a662b129930a}")
 
-              # adblock
-              (extension "ublock-origin" "uBlock0@raymondhill.net")
-              # https://github.com/AdguardTeam/AdGuardExtra
+            # adblock
+            (extension "ublock-origin" "uBlock0@raymondhill.net")
+            # https://github.com/AdguardTeam/AdGuardExtra
 
-              # layout / Themeing
-              (extension "darkreader" "addon@darkreader.org")
-              (extension "adaptive-tab-bar-colour" "ATBC@EasonWong")
-              (extension "refined-github-" "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}")
+            # layout / Themeing
+            (extension "darkreader" "addon@darkreader.org")
+            (extension "adaptive-tab-bar-colour" "ATBC@EasonWong")
+            (extension "refined-github-" "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}")
 
-              # misc
-              (extension "auto-tab-discard" "{c2c003ee-bd69-42a2-b0e9-6f34222cb046}")
-              (extension "betterttv" "firefox@betterttv.net")
-              (extension "keepa" "amptra@keepa.com")
-              (extension "multi-account-containers" "@testpilot-containers")
-              (extension "open-graph-previewer" "ruben.winant@hotmail.com")
-            ]
+            # misc
+            (extension "auto-tab-discard" "{c2c003ee-bd69-42a2-b0e9-6f34222cb046}")
+            (extension "betterttv" "firefox@betterttv.net")
+            (extension "keepa" "amptra@keepa.com")
+            (extension "multi-account-containers" "@testpilot-containers")
+            (extension "open-graph-previewer" "ruben.winant@hotmail.com")
+          ]
         )
         // {
         };
@@ -82,10 +84,14 @@ in {
     };
   };
 
-  xdg.mimeApps.defaultApplications = {
-    "text/html" = ["firefox.desktop"];
-    "text/xml" = ["firefox.desktop"];
-    "x-scheme-handler/http" = ["firefox.desktop"];
-    "x-scheme-handler/https" = ["firefox.desktop"];
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = [ "firefox.desktop" ];
+      "text/xml" = [ "firefox.desktop" ];
+      "application/pdf" = [ "firefox.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+    };
   };
 }

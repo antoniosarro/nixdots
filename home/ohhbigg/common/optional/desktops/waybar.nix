@@ -3,9 +3,11 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   monitor = lib.head (lib.filter (m: m.primary) config.monitors);
-in {
+in
+{
   services = {
     blueman-applet.enable = true;
     network-manager-applet.enable = true;
@@ -32,8 +34,12 @@ in {
         margin-left = 10;
         margin-bottom = 0;
         margin-right = 10;
-        modules-left = ["custom/launcher" "gamemode" "hyprland/workspaces"];
-        modules-center = [];
+        modules-left = [
+          "custom/launcher"
+          "gamemode"
+          "hyprland/workspaces"
+        ];
+        modules-center = [ ];
         modules-right =
           [
             "tray"
@@ -44,7 +50,10 @@ in {
             "network"
           ]
           ++ lib.optional (config.hostSpec.hostName == "laptop") "battery"
-          ++ ["clock" "custom/power-menu"];
+          ++ [
+            "clock"
+            "custom/power-menu"
+          ];
 
         # ============================
         # Module Left
@@ -93,7 +102,17 @@ in {
         "backlight" = {
           "device" = "${monitor.name}";
           "format" = "{icon} {percent}%";
-          "format-icons" = ["" "" "" "" "" "" "" "" ""];
+          "format-icons" = [
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
           "on-click" = "";
         };
         "pulseaudio" = {
@@ -107,7 +126,11 @@ in {
             "phone" = "";
             "portable" = "";
             "car" = "";
-            "default" = ["" "" ""];
+            "default" = [
+              ""
+              ""
+              ""
+            ];
           };
           "on-click" = "pavucontrol";
         };
@@ -133,7 +156,13 @@ in {
           "format-plugged" = "  {capacity}%";
           "format-alt" = "{icon} {time}";
           "format-full" = "  {capacity}%";
-          "format-icons" = [" " " " " " " " " "];
+          "format-icons" = [
+            " "
+            " "
+            " "
+            " "
+            " "
+          ];
         };
         "gamemode" = {
           "format" = "{glyph}";

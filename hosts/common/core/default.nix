@@ -5,10 +5,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   platform = "nixos";
   platformModules = "${platform}Modules";
-in {
+in
+{
   imports = lib.flatten [
     inputs.home-manager.${platformModules}.home-manager
 
@@ -46,7 +48,7 @@ in {
   };
 
   nix = {
-    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     # See https://jackson.dev/post/nix-reasonable-defaults/
@@ -56,7 +58,7 @@ in {
       min-free = 128000000; # 128MB
       max-free = 1000000000; # 1GB
 
-      trusted-users = ["@wheel"];
+      trusted-users = [ "@wheel" ];
 
       auto-optimise-store = true;
       warn-dirty = false;
