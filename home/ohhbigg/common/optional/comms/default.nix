@@ -10,8 +10,11 @@
       protonmail-desktop
       signal-desktop
       slack
-      teams-for-linux
       telegram-desktop
       ;
+    inherit (pkgs.unstable)
+      teams-for-linux
+      ;
   };
+
 }

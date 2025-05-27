@@ -1,111 +1,127 @@
 {
   programs.fastfetch = {
     enable = true;
-    settings = ''
-      {
-          "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
-          "display": {
-              "separator": " : "
-          },
-          "modules": [
-              {
-                  "type": "custom",
-                  "format": "\u001b[36m    コンピューター"
-              },
-              {
-                  "type": "custom",
-                  "format": "┌──────────────────────────────────────────┐"
-              },
-              {
-                  "type": "os",
-                  "key": "   OS",
-                  "keyColor": "red"
-              },
-              {
-                  "type": "kernel",
-                  "key": "   Kernel",
-                  "keyColor": "red"
-              },
-              {
-                  "type": "packages",
-                  "key": "   Packages",
-                  "keyColor": "green"
-              },
-              {
-                  "type": "display",
-                  "key": "   Display",
-                  "keyColor": "green"
-              },
-              {
-                  "type": "wm",
-                  "key": "   WM",
-                  "keyColor": "yellow"
-              },
-              {
-                  "type": "terminal",
-                  "key": "   Terminal",
-                  "keyColor": "yellow"
-              },
-              {
-                  "type": "custom",
-                  "format": "└──────────────────────────────────────────┘"
-              },
-              "break",
-              {
-                  "type": "title",
-                  "key": "  "
-              },
-              {
-                  "type": "custom",
-                  "format": "┌──────────────────────────────────────────┐"
-              },
-              {
-                  "type": "cpu",
-                  "format": "{1}",
-                  "key": "   CPU",
-                  "keyColor": "blue"
-              },
-              {
-                  "type": "gpu",
-                  "format": "{2}",
-                  "key": "   GPU",
-                  "keyColor": "blue"
-              },
-              {
-                  "type": "gpu",
-                  "format": "{3}",
-                  "key": "   GPU Driver",
-                  "keyColor": "magenta"
-              },
-              {
-                  "type": "memory",
-                  "key": "  ﬙ Memory",
-                  "keyColor": "magenta"
-              },
-              {
-                  "type": "command",
-                  "key": "  󱦟 OS Age ",
-                  "keyColor": "31",
-                  "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
-              },
-              {
-                  "type": "uptime",
-                  "key": "  󱫐 Uptime ",
-                  "keyColor": "red"
-              },
-              {
-                  "type": "custom",
-                  "format": "└──────────────────────────────────────────┘"
-              },
-              {
-                  "type": "colors",
-                  "paddingLeft": 2,
-                  "symbol": "circle"
-              },
-              "break"
-
-          ]
-      }
-    '';
+    settings = {
+      logo = {
+        type = "builtin";
+        height = 15;
+        width = 30;
+        padding = {
+          top = 5;
+          left = 3;
+        };
+      };
+      modules = [
+        { type = "break"; }
+        {
+          type = "custom";
+          format = "{#30}┌──────────────────────Hardware──────────────────────┐";
+        }
+        {
+          type = "custom";
+          format = "{#32} PC: {#39}Desktop";
+        }
+        {
+          type = "cpu";
+          key = "│ ├";
+          keyColor = "green";
+        }
+        {
+          type = "gpu";
+          key = "│ ├";
+          keyColor = "green";
+        }
+        {
+          type = "memory";
+          key = "│ ├";
+          keyColor = "green";
+        }
+        {
+          type = "disk";
+          key = "│ ├";
+          keyColor = "green";
+        }
+        {
+          type = "custom";
+          format = "{#30}└────────────────────────────────────────────────────┘";
+        }
+        { type = "break"; }
+        {
+          type = "custom";
+          format = "{#30}┌──────────────────────Software──────────────────────┐";
+        }
+        {
+          type = "os";
+          key = " OS";
+          keyColor = "yellow";
+        }
+        {
+          type = "kernel";
+          key = "│ ├";
+          keyColor = "yellow";
+        }
+        {
+          type = "bios";
+          key = "│ ├";
+          keyColor = "yellow";
+        }
+        {
+          type = "packages";
+          key = "│ ├󰏖";
+          keyColor = "yellow";
+        }
+        {
+          type = "shell";
+          key = "└ └";
+          keyColor = "yellow";
+        }
+        { type = "break"; }
+        {
+          type = "wm";
+          key = " WM";
+          keyColor = "blue";
+        }
+        {
+          type = "lm";
+          key = "│ ├";
+          keyColor = "blue";
+        }
+        {
+          type = "terminal";
+          key = "└ └";
+          keyColor = "blue";
+        }
+        {
+          type = "custom";
+          format = "{#30}└────────────────────────────────────────────────────┘";
+        }
+        { type = "break"; }
+        {
+          type = "custom";
+          format = "{#30}┌────────────────────Uptime / Age / DT────────────────────┐";
+        }
+        {
+          type = "command";
+          key = "  OS Age ";
+          keyColor = "magenta";
+          text = "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days";
+        }
+        {
+          type = "uptime";
+          key = "  Uptime ";
+          keyColor = "magenta";
+        }
+        {
+          type = "datetime";
+          key = "  Date ";
+          keyColor = "magenta";
+        }
+        {
+          type = "custom";
+          format = "{#30}└─────────────────────────────────────────────────────────┘";
+        }
+        { type = "break"; }
+      ];
+    };
   };
 }

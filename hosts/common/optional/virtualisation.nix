@@ -18,6 +18,9 @@
           }
         ];
         ip = "127.0.0.1";
+        experimental = true;
+        insecure-registries = ["10.10.30.29:5000"];
+        registry-mirrors = ["http://10.10.30.29:5000"];
       };
     };
     oci-containers = {

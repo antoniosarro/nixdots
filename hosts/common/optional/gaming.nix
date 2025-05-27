@@ -68,5 +68,7 @@
     pkgs.lutris
     pkgs.protonup-qt
     pkgs.rpcs3
+    pkgs.pcsx2
+    pkgs.winetricks
   ];
 }
