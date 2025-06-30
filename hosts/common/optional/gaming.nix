@@ -70,5 +70,7 @@
     pkgs.rpcs3
     pkgs.pcsx2
     pkgs.winetricks
+    pkgs.unstable.vkbasalt
+    pkgs.unstable.vkbasalt-cli
   ];
 }

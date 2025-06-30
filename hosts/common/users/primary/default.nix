@@ -7,11 +7,15 @@
 }:
 let
   hostSpec = config.hostSpec;
+  pubKeys = lib.filesystem.listFilesRecursive ./keys;
 in
 {
   users.users.${hostSpec.username} = {
     name = hostSpec.username;
     shell = pkgs.zsh;
+
+    # These get placed into /etc/ssh/authorized_keys.d/<name> on nixos
+    openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
   };
 
   systemd.tmpfiles.rules =

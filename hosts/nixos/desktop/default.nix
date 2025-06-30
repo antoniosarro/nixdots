@@ -49,6 +49,7 @@
       "hosts/common/optional/thunar.nix" # file manager
       "hosts/common/optional/mpv.nix" # media player
       "hosts/common/optional/nix-ld.nix"
+      "hosts/common/optional/samba.nix"
       "hosts/common/optional/obs.nix"
       "hosts/common/optional/wayland.nix" # wayland components and pkgs not available in home-manager
       "hosts/common/optional/virtualisation.nix" # Qemu & Docker
